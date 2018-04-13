@@ -6,6 +6,7 @@ use App\Entity\AttireCategory;
 use App\Entity\MetalMaiden;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -20,6 +21,9 @@ class MetalMaidenType extends AbstractType
                 'class' => AttireCategory::class,
                 'choice_label' => 'name',
                 'multiple'     => false,
+            ))
+            ->add('portraitImageFile', FileType::class, array(
+                'required'    => false
             ))
         ;
     }

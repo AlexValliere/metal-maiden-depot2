@@ -17,18 +17,35 @@ class MetalMaiden
     private $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\AttireCategory", inversedBy="metalMaidens")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $attireCategory;
+
+    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      */
     private $attire;
 
     public function getId()
     {
         return $this->id;
+    }
+
+    // public function getAttireCategory(): AttireCategory
+    public function getAttireCategory()
+    {
+        return $this->attireCategory;
+    }
+
+    public function setAttireCategory(AttireCategory $attireCategory)
+    {
+        $this->attireCategory = $attireCategory;
     }
 
     public function getName(): ?string

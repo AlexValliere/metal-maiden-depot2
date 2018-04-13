@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\AttireCategory;
 use App\Entity\MetalMaiden;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
@@ -17,6 +18,33 @@ class MetalMaidenRepository extends ServiceEntityRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, MetalMaiden::class);
+    }
+
+    public function findAllWithAttireCategories()
+    {
+      $qb = $this
+        ->createQueryBuilder('m')
+        ->leftJoin('m.attireCategory', 'a')
+        ->addSelect('a')
+      ;
+
+      return $qb
+        ->getQuery()
+        ->getResult()
+      ;
+    }
+
+    public function findOneByIdJoinedToAttireCategory($metalMaidenId)
+    {
+        return $this->createQueryBuilder('m')
+            // m.attireCategory refers to the "attireCategory" property on metalMaiden
+            ->innerJoin('m.attireCategory', 'a')
+            // selects all the attireCategory data to avoid the query
+            ->addSelect('a')
+            ->andWhere('m.id = :id')
+            ->setParameter('id', $metalMaidenId)
+            ->getQuery()
+            ->getOneOrNullResult();
     }
 
 //    /**

@@ -11,6 +11,7 @@
                 <th>Id</th>
                 <th>Name</th>
                 <th>Attire</th>
+                <th>Attire category</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -20,6 +21,7 @@
                 <td>{{ metal_maiden.id }}</td>
                 <td>{{ metal_maiden.name }}</td>
                 <td>{{ metal_maiden.attire }}</td>
+                <td>{% if metal_maiden.attireCategory %}{{ metal_maiden.attireCategory.name }} {% endif %}</td>
                 <td>
                     <a href="{{ path('metal_maiden_show', {'id': metal_maiden.id}) }}">show</a>
                     <a href="{{ path('metal_maiden_edit', {'id': metal_maiden.id}) }}">edit</a>

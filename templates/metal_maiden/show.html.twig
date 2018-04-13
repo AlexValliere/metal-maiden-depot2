@@ -19,6 +19,10 @@
                 <th>Attire</th>
                 <td>{{ metal_maiden.attire }}</td>
             </tr>
+            <tr>
+                <th>Attire category</th>
+                <td>{% if metal_maiden.attireCategory %}{{ metal_maiden.attireCategory.name }} {% endif %}</td>
+            </tr>
         </tbody>
     </table>
 

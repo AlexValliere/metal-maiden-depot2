@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit MetalMaiden{% endblock %}
+
+{% block body %}
+    <h1>Edit MetalMaiden</h1>
+
+    {{ include('metal_maiden/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('metal_maiden_index') }}">back to list</a>
+
+    {{ include('metal_maiden/_delete_form.html.twig') }}
+{% endblock %}

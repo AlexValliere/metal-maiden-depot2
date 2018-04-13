@@ -28,3 +28,10 @@ framework:
 
         # APCu (not recommended with heavy random-write workloads as memory fragmentation can cause perf issues)
         #app: cache.adapter.apcu
+
+    assets:
+        json_manifest_path: '%kernel.project_dir%/public/build/manifest.json'
+
+twig:
+    # form_themes: ['bootstrap_4_layout.html.twig']
+    form_themes: ['bootstrap_4_horizontal_layout.html.twig']

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New AttireCategory{% endblock %}
+
+{% block body %}
+    <h1>Create new AttireCategory</h1>
+
+    {{ include('attire_category/_form.html.twig') }}
+
+    <a href="{{ path('attire_category_index') }}">back to list</a>
+{% endblock %}

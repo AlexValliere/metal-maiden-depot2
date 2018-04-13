@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit AttireCategory{% endblock %}
+
+{% block body %}
+    <h1>Edit AttireCategory</h1>
+
+    {{ include('attire_category/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('attire_category_index') }}">back to list</a>
+
+    {{ include('attire_category/_delete_form.html.twig') }}
+{% endblock %}

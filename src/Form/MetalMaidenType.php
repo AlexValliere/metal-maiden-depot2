@@ -30,6 +30,8 @@ class MetalMaidenType extends AbstractType
                 'class' => Nation::class,
                 'choice_label' => 'name',
                 'multiple'     => false,
+                'empty_data'  => null,
+                'required' => false,
             ))
         ;
     }

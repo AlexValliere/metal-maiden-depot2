@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\AttireCategory;
 use App\Entity\MetalMaiden;
+use App\Entity\Nation;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -24,6 +25,11 @@ class MetalMaidenType extends AbstractType
             ))
             ->add('portraitImageFile', FileType::class, array(
                 'required'    => false
+            ))
+            ->add('nation', EntityType::class, array(
+                'class' => Nation::class,
+                'choice_label' => 'name',
+                'multiple'     => false,
             ))
         ;
     }

@@ -2,16 +2,18 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\MetalMaidenRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\NationRepository")
  * @Vich\Uploadable
  */
-class MetalMaiden
+class Nation
 {
     /**
      * @ORM\Id()
@@ -21,55 +23,43 @@ class MetalMaiden
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\AttireCategory", inversedBy="metalMaidens")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\MetalMaiden", mappedBy="nation")
      */
-    private $attireCategory;
+    private $metalMaidens;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Nation", inversedBy="metalMaidens")
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $nation;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
      */
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255, unique=true)
-     */
-    private $attire;
-
-    /**
-     * @Gedmo\Slug(fields={"attire"})
-     * @ORM\Column(name="attireSlug", type="string", length=255, unique=true)
+     * @Gedmo\Slug(fields={"name"})
+     * @ORM\Column(name="nameSlug", type="string", length=255, unique=true)
     */
-    private $attireSlug;
+    private $nameSlug;
 
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      * 
-     * @Vich\UploadableField(mapping="metal_maiden_portrait", fileNameProperty="portraitImageName", size="portraitImageSize")
+     * @Vich\UploadableField(mapping="nation", fileNameProperty="imageName", size="imageSize")
      * 
      * @var File
      */
-    private $portraitImageFile;
+    private $imageFile;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      *
      * @var string
      */
-    private $portraitImageName;
+    private $imageName;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      *
      * @var integer
      */
-    private $portraitImageSize;
+    private $imageSize;
 
     /**
      * @ORM\Column(type="datetime")
@@ -87,8 +77,17 @@ class MetalMaiden
 
     public function __construct()
     {
+        $this->metalMaidens = new ArrayCollection();
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
+    }
+
+    /**
+     * @return Collection|MetalMaiden[]
+     */
+    public function getMetalMaidens()
+    {
+        return $this->metalMaidens;
     }
 
     public function getId()
@@ -96,66 +95,32 @@ class MetalMaiden
         return $this->id;
     }
 
-    // public function getAttireCategory(): AttireCategory
-    public function getAttireCategory()
-    {
-        return $this->attireCategory;
-    }
-
-    public function setAttireCategory(AttireCategory $attireCategory)
-    {
-        $this->attireCategory = $attireCategory;
-    }
-
-    // public function getNation(): Nation
-    public function getNation()
-    {
-        return $this->nation;
-    }
-
-    public function setNation(Nation $nation)
-    {
-        $this->nation = $nation;
-    }
-
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    public function setName(?string $name): self
+    public function setName(string $name): self
     {
         $this->name = $name;
 
         return $this;
     }
 
-    public function getAttire(): ?string
-    {
-        return $this->attire;
-    }
-
-    public function setAttire(string $attire): self
-    {
-        $this->attire = $attire;
-
-        return $this;
-    }
-
     /**
-     * @param string $attireSlug
+     * @param string $nameSlug
      */
-    public function setAttireSlug($attireSlug)
+    public function setNameSlug($nameSlug)
     {
-        $this->attireSlug = $attireSlug;
+        $this->nameSlug = $nameSlug;
     }
 
     /**
      * @return string
      */
-    public function getAttireSlug()
+    public function getNameSlug()
     {
-        return $this->attireSlug;
+        return $this->nameSlug;
     }
 
     /**
@@ -167,9 +132,9 @@ class MetalMaiden
      *
      * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
      */
-    public function setPortraitImageFile(?File $image = null): void
+    public function setImageFile(?File $image = null): void
     {
-        $this->portraitImageFile = $image;
+        $this->imageFile = $image;
 
         if (null !== $image) {
             // It is required that at least one field changes if you are using doctrine
@@ -178,29 +143,29 @@ class MetalMaiden
         }
     }
 
-    public function getPortraitImageFile(): ?File
+    public function getImageFile(): ?File
     {
-        return $this->portraitImageFile;
+        return $this->imageFile;
     }
 
-    public function setPortraitImageName(?string $portraitImageName): void
+    public function setImageName(?string $imageName): void
     {
-        $this->portraitImageName = $portraitImageName;
+        $this->imageName = $imageName;
     }
 
-    public function getPortraitImageName(): ?string
+    public function getImageName(): ?string
     {
-        return $this->portraitImageName;
+        return $this->imageName;
     }
 
-    public function setPortraitImageSize(?int $portraitImageSize): void
+    public function setImageSize(?int $imageSize): void
     {
-        $this->portraitImageSize = $portraitImageSize;
+        $this->imageSize = $imageSize;
     }
 
-    public function getPortraitImageSize(): ?int
+    public function getImageSize(): ?int
     {
-        return $this->portraitImageSize;
+        return $this->imageSize;
     }
 
     public function getCreatedAt(): \DateTime

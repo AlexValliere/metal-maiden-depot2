@@ -20,7 +20,7 @@ class MetalMaidenController extends Controller
      */
     public function index(MetalMaidenRepository $metalMaidenRepository): Response
     {
-        return $this->render('metal_maiden/index.html.twig', ['metal_maidens' => $metalMaidenRepository->findAllWithAttireCategories()]);
+        return $this->render('metal_maiden/index.html.twig', ['metal_maidens' => $metalMaidenRepository->findAllWithAttireCategoriesAndNations()]);
     }
 
     /**

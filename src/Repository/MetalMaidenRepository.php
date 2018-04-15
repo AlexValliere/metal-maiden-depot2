@@ -20,12 +20,14 @@ class MetalMaidenRepository extends ServiceEntityRepository
         parent::__construct($registry, MetalMaiden::class);
     }
 
-    public function findAllWithAttireCategories()
+    public function findAllWithAttireCategoriesAndNations()
     {
       $qb = $this
         ->createQueryBuilder('m')
         ->leftJoin('m.attireCategory', 'a')
         ->addSelect('a')
+        ->leftJoin('m.nation', 'n')
+        ->addSelect('n')
       ;
 
       return $qb

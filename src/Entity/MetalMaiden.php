@@ -97,7 +97,7 @@ class MetalMaiden
     }
 
     // public function getAttireCategory(): AttireCategory
-    public function getAttireCategory()
+    public function getAttireCategory(): ?AttireCategory
     {
         return $this->attireCategory;
     }
@@ -108,7 +108,7 @@ class MetalMaiden
     }
 
     // public function getNation(): Nation
-    public function getNation()
+    public function getNation(): ?Nation
     {
         return $this->nation;
     }
@@ -145,7 +145,7 @@ class MetalMaiden
     /**
      * @param string $attireSlug
      */
-    public function setAttireSlug($attireSlug)
+    public function setAttireSlug($attireSlug): void
     {
         $this->attireSlug = $attireSlug;
     }
@@ -153,7 +153,7 @@ class MetalMaiden
     /**
      * @return string
      */
-    public function getAttireSlug()
+    public function getAttireSlug(): string
     {
         return $this->attireSlug;
     }
@@ -218,7 +218,7 @@ class MetalMaiden
         $this->createdAt = $createdAt;
     }
 
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
@@ -231,7 +231,7 @@ class MetalMaiden
     /**
      * @ORM\PreUpdate
      */
-    public function updateDate()
+    public function updateDate(): void
     {
         $this->setUpdatedAt(new \Datetime());
     }

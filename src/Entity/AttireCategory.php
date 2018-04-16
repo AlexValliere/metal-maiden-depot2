@@ -114,7 +114,7 @@ class AttireCategory
     /**
      * @ORM\PreUpdate
      */
-    public function updateDate()
+    public function updateDate(): void
     {
         $this->setUpdatedAt(new \Datetime());
     }

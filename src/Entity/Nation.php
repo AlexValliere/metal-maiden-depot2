@@ -86,7 +86,7 @@ class Nation
     /**
      * @return Collection|MetalMaiden[]
      */
-    public function getMetalMaidens()
+    public function getMetalMaidens(): MetalMaiden
     {
         return $this->metalMaidens;
     }
@@ -192,7 +192,7 @@ class Nation
     /**
      * @ORM\PreUpdate
      */
-    public function updateDate()
+    public function updateDate(): void
     {
         $this->setUpdatedAt(new \Datetime());
     }

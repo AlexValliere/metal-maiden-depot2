@@ -17,12 +17,12 @@ class NationFixtures extends Fixture
     {
     	$i = 0;
 
-        foreach ($this->getNationData() as $name) {
+        foreach ($this->getNationData() as [$name]) {
             $nation = new Nation();
             $nation->setName($name);
 
             $manager->persist($nation);
-            $this->addReference('nation-' . $name);
+            $this->addReference('nation-' . $name, $nation);
         }
 
         $manager->flush();

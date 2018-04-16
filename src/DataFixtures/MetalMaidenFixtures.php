@@ -9,6 +9,8 @@ use App\Entity\Nation;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class MetalMaidenFixtures extends Fixture implements DependentFixtureInterface
 {
@@ -21,12 +23,14 @@ class MetalMaidenFixtures extends Fixture implements DependentFixtureInterface
     {
         return array(
             AttireCategoryFixtures::class,
+            NationFixtures::class,
         );
     }
 
     private function loadMetalMaidens(ObjectManager $manager)
     {
-    	$i = 0;
+        $i = 0;
+        $fileSystem = new Filesystem();
 
         foreach ($this->getMetalMaidenData() as [$name, $attire, $attireCategoryAbbreviation, $nationName]) {
             $metalMaiden = new MetalMaiden();
@@ -36,11 +40,30 @@ class MetalMaidenFixtures extends Fixture implements DependentFixtureInterface
             $metalMaiden->setNation($this->getReference('nation-' . $nationName));
 
             $manager->persist($metalMaiden);
-            $this->addReference('metal_maiden-' . $i++, $metalMaiden);
+
+            $manager->flush();
+
+            $filePath = "public/images/metal_maiden/portrait2/". str_replace("/", "_", $attire) . ".png";
+            $tmpFilePath = "public/images/metal_maiden/portrait/". str_replace("/", "_", $attire) . ".png";
+            $newFilePath = "public/images/metal_maiden/portrait/". $metalMaiden->getAttireSlug() . ".png";
+            $fileExists = $fileSystem->exists($filePath);
+
+            if ($fileExists)
+            {
+                $fileSystem->copy($filePath, $tmpFilePath);
+                $portraitImageFile = new UploadedFile($tmpFilePath, str_replace("_", "-", $metalMaiden->getAttireSlug()) . ".png", null, filesize($tmpFilePath), false, true);
+                $metalMaiden->setPortraitImageFile($portraitImageFile);
+                $metalMaiden->updateDate();
+                $manager->persist($metalMaiden);
+                $manager->flush();
+            }
+
+            $this->addReference('metal_maiden-' . $i, $metalMaiden);
+            $i++;
         }
 
-        $manager->flush();
-    }
+        // $manager->flush();
+   }
 
     private function getMetalMaidenData(): array
     {
@@ -395,7 +418,7 @@ class MetalMaidenFixtures extends Fixture implements DependentFixtureInterface
             ['Ella Isayeva', 'Zis-30', 'ATG', 'Rossiya'],
             ['Flora Lucas', 'leFH18 B2', 'SPG', 'Bavaria'],
             ['Lihua Xu', 'm4a3 Rocket Launcher Type', 'MT', 'National Flag-08'],
-            ['Greta Lehman', 'sIG-33', 'ATG', 'Bavaria']
+            ['Greta Lehman', 'sIG-33', 'ATG', 'Bavaria'],
         ];
     }
 }

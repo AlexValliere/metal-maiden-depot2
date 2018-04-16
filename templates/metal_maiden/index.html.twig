@@ -14,6 +14,9 @@
                 <th>Attire slug</th>
                 <th>Attire category</th>
                 <th>Nation</th>
+                <th>hasPortraitImageFile</th>
+                <!--<th>PortraitImageName</th>
+                <th>PortraitImageSize</th>-->
                 <th>CreatedAt</th>
                 <th>UpdatedAt</th>
                 <th>actions</th>
@@ -28,6 +31,9 @@
                 <td>{{ metal_maiden.attireSlug }}</td>
                 <td>{% if metal_maiden.attireCategory %}{{ metal_maiden.attireCategory.name }} {% endif %}</td>
                 <td>{% if metal_maiden.nation %}{{ metal_maiden.nation.name }} {% endif %}</td>
+                <td>{{ metal_maiden.hasPortraitImageFile|boolean }}
+                <!--<td>{{ metal_maiden.portraitImageName }}</td>
+                <td>{{ metal_maiden.portraitImageSize }}</td>-->
                 <td>{{ metal_maiden.createdAt ? metal_maiden.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ metal_maiden.updatedAt ? metal_maiden.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>

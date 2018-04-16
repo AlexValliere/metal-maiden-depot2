@@ -203,6 +203,11 @@ class MetalMaiden
         return $this->portraitImageSize;
     }
 
+    public function hasPortraitImageFile(): ?bool
+    {
+        return (null !== $this->portraitImageFile) ? true : false;
+    }
+
     public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;

@@ -205,7 +205,7 @@ class MetalMaiden
 
     public function hasPortraitImageFile(): ?bool
     {
-        return (null !== $this->portraitImageFile) ? true : false;
+        return (null !== $this->portraitImageName) ? true : false;
     }
 
     public function getCreatedAt(): \DateTime

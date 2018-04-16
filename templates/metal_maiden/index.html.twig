@@ -29,7 +29,7 @@
                 <td>{{ metal_maiden.name }}</td>
                 <td>{{ metal_maiden.attire }}</td>
                 <td>{{ metal_maiden.attireSlug }}</td>
-                <td>{% if metal_maiden.attireCategory %}{{ metal_maiden.attireCategory.name }} {% endif %}</td>
+                <td>{% if metal_maiden.attireCategory %}{{ metal_maiden.attireCategory.abbreviation }} {% endif %}</td>
                 <td>{% if metal_maiden.nation %}{{ metal_maiden.nation.name }} {% endif %}</td>
                 <td>{{ metal_maiden.hasPortraitImageFile|boolean }}
                 <!--<td>{{ metal_maiden.portraitImageName }}</td>

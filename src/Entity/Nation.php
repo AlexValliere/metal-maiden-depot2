@@ -80,7 +80,6 @@ class Nation
     {
         $this->metalMaidens = new ArrayCollection();
         $this->createdAt = new \DateTime();
-        $this->updatedAt = new \DateTime();
     }
 
     /**

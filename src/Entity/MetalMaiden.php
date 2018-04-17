@@ -153,7 +153,7 @@ class MetalMaiden
     /**
      * @return string
      */
-    public function getAttireSlug(): string
+    public function getAttireSlug(): ?string
     {
         return $this->attireSlug;
     }

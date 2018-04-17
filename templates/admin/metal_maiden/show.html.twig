@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MetalMaiden{% endblock %}
+
+{% block body %}
+    <h1>MetalMaiden</h1>
+
+    <div class="container">
+        <div class="row justify-content-md-center align-items-center">
+            <div class="col-md-auto">
+                <img src="{{ vich_uploader_asset(metal_maiden, 'portraitImageFile') }}" alt"{{ metal_maiden.attire }}'s portrait" />
+            </div>
+            <div class="col">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>Id</th>
+                            <td>{{ metal_maiden.id }}</td>
+                        </tr>
+                        <tr>
+                            <th>Name</th>
+                            <td>{{ metal_maiden.name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Attire</th>
+                            <td>{{ metal_maiden.attire }}</td>
+                        </tr>
+                        <tr>
+                            <th>Attire category</th>
+                            <td>{% if metal_maiden.attireCategory %}{{ metal_maiden.attireCategory.name }} {% endif %}</td>
+                        </tr>
+                        <tr>
+                            <th>Nation</th>
+                            <td>{% if metal_maiden.nation %}{{ metal_maiden.nation.name }} {% endif %}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <a href="{{ path('admin_metal_maiden_index') }}">back to list</a>
+
+    <a href="{{ path('admin_metal_maiden_edit', {'id': metal_maiden.id}) }}">edit</a>
+
+    {{ include('admin/metal_maiden/_delete_form.html.twig') }}
+{% endblock %}

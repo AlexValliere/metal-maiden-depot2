@@ -1,0 +1,30 @@
+{{ form_start(form) }}
+    <div class="form-group row align-items-end">
+
+        {% if nation.nameSlug %}
+
+        	{% if nation.imageName %}
+        		<label class="col-form-label col-sm-2 form-control-label" for="nationImageFile">
+        			<img src="{{ vich_uploader_asset(nation, 'imageFile') }}" alt"{{ nation.name }}'s portrait" />
+        			<br />
+        			Image file
+        		</label>
+        	{% else %}
+        		<label class="col-form-label col-sm-2 form-control-label" for="nationImageFile">
+        			Image file
+        		</label>
+        	{% endif %}
+
+            {# form_label(form.imageFile) #}
+            <div class="col-sm-10">
+    	        {{ form_errors(form.imageFile) }}
+    	        {{ form_widget(form.imageFile) }}
+           	</div>
+
+        {% endif %}
+
+    </div>
+
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

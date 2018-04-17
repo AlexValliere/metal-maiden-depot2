@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New AttireCategory{% endblock %}
+
+{% block body %}
+    <h1>Create new AttireCategory</h1>
+
+    {{ include('admin/attire_category/_form.html.twig') }}
+
+    <a href="{{ path('admin_attire_category_index') }}">back to list</a>
+{% endblock %}

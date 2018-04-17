@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\MetalMaiden;
+use App\Entity\Nation;
 use App\Form\MetalMaidenType;
 use App\Repository\MetalMaidenRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -21,6 +22,22 @@ class MetalMaidenController extends Controller
     public function index(MetalMaidenRepository $metalMaidenRepository): Response
     {
         return $this->render('metal_maiden/index.html.twig', ['metal_maidens' => $metalMaidenRepository->findAllWithAttireCategoriesAndNations()]);
+    }
+
+    /**
+     * @Route("/attire-category/{attireCategoryAbbreviation}", name="metal_maiden_index_by_attire_category", methods="GET")
+     */
+    public function indexByAttireCategory(MetalMaidenRepository $metalMaidenRepository, $attireCategoryAbbreviation): Response
+    {
+        return $this->render('metal_maiden/index.html.twig', ['metal_maidens' => $metalMaidenRepository->findByAttireCategoryWithAttireCategoriesAndNations($attireCategoryAbbreviation)]);
+    }
+
+    /**
+     * @Route("/nation/{nation}", name="metal_maiden_index_by_nation", methods="GET")
+     */
+    public function indexByNation(MetalMaidenRepository $metalMaidenRepository, $nation): Response
+    {
+        return $this->render('metal_maiden/index.html.twig', ['metal_maidens' => $metalMaidenRepository->findByNationWithAttireCategoriesAndNations($nation)]);
     }
 
     /**

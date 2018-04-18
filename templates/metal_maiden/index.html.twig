@@ -3,51 +3,40 @@
 {% block title %}MetalMaiden index{% endblock %}
 
 {% block body %}
-    <h1>MetalMaiden index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Attire</th>
-                <th>Attire slug</th>
-                <th>Attire category</th>
-                <th>Nation</th>
-                <th>hasPortraitImageFile</th>
-                <!--<th>PortraitImageName</th>
-                <th>PortraitImageSize</th>-->
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for metal_maiden in metal_maidens %}
-            <tr>
-                <td>{{ metal_maiden.id }}</td>
-                <td>{{ metal_maiden.name }}</td>
-                <td>{{ metal_maiden.attire }}</td>
-                <td>{{ metal_maiden.attireSlug }}</td>
-                <td>{% if metal_maiden.attireCategory %}{{ metal_maiden.attireCategory.abbreviation }} {% endif %}</td>
-                <td>{% if metal_maiden.nation %}{{ metal_maiden.nation.name }} {% endif %}</td>
-                <td>{{ metal_maiden.hasPortraitImageFile|boolean }}
-                <!--<td>{{ metal_maiden.portraitImageName }}</td>
-                <td>{{ metal_maiden.portraitImageSize }}</td>-->
-                <td>{{ metal_maiden.createdAt ? metal_maiden.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ metal_maiden.updatedAt ? metal_maiden.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('metal_maiden_show', {'id': metal_maiden.id}) }}">show</a>
-                    <a href="{{ path('metal_maiden_edit', {'id': metal_maiden.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
+<h1>Metal Maiden list</h1>
+{% if metal_maidens_filter is defined %}
+    <p class="text-muted">By {{ metal_maidens_filter["parameter"] }}: {{ metal_maidens_filter["value"] }}</p>
+{% endif %}
+<hr />
+
+<div class="album">
+    <div class="container">
+        <div class="row">
+        {% for metal_maiden in metal_maidens|sort %}
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2">
+            <div class="card box-shadow mb-4 bg-transparent text-white border-0">
+                <img class="card-img-top rounded metal-maiden-portrait-image" data-src="holder.js/157px146?theme=thumb&bg=55595c&fg=eceeef&text=Image" src="{{ vich_uploader_asset(metal_maiden, 'portraitImageFile') }}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title small">{{ metal_maiden.attire }}</h5>
+                    <h6 class="card-subtitle small text-muted">{{ metal_maiden.name }}</h6>
+                    <div class="d-flex justify-content-between align-items-center">
+<!--                         <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">{{ metal_maiden.attireCategory.abbreviation }} - {{ metal_maiden.nation.name }}</small>
+                </div>
+            </div>
+        </div>
+
         {% endfor %}
-        </tbody>
-    </table>
+        </div>
+    </div>
+</div>
 
-    <a href="{{ path('metal_maiden_new') }}">Create new</a>
+
 {% endblock %}

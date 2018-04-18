@@ -21,7 +21,10 @@ class MetalMaidenController extends Controller
      */
     public function index(MetalMaidenRepository $metalMaidenRepository): Response
     {
-        return $this->render('metal_maiden/index.html.twig', ['metal_maidens' => $metalMaidenRepository->findAllWithAttireCategoriesAndNations()]);
+        return $this->render(
+            'metal_maiden/index.html.twig',
+            ['metal_maidens' => $metalMaidenRepository->findAllWithAttireCategoriesAndNations()]
+        );
     }
 
     /**
@@ -29,7 +32,17 @@ class MetalMaidenController extends Controller
      */
     public function indexByAttireCategory(MetalMaidenRepository $metalMaidenRepository, $attireCategoryAbbreviation): Response
     {
-        return $this->render('metal_maiden/index.html.twig', ['metal_maidens' => $metalMaidenRepository->findByAttireCategoryWithAttireCategoriesAndNations($attireCategoryAbbreviation)]);
+        return $this->render(
+            'metal_maiden/index.html.twig',
+            [
+                'metal_maidens'         => $metalMaidenRepository->findByAttireCategoryWithAttireCategoriesAndNations($attireCategoryAbbreviation),
+                'metal_maidens_filter'  =>
+                    [
+                        'parameter'     => 'attire category',
+                        'value'         => strtoupper($attireCategoryAbbreviation)
+                    ],
+            ]
+        );
     }
 
     /**
@@ -37,7 +50,17 @@ class MetalMaidenController extends Controller
      */
     public function indexByNation(MetalMaidenRepository $metalMaidenRepository, $nation): Response
     {
-        return $this->render('metal_maiden/index.html.twig', ['metal_maidens' => $metalMaidenRepository->findByNationWithAttireCategoriesAndNations($nation)]);
+        return $this->render(
+            'metal_maiden/index.html.twig',
+            [
+                'metal_maidens'         => $metalMaidenRepository->findByNationWithAttireCategoriesAndNations($nation),
+                'metal_maidens_filter'  =>
+                    [
+                        'parameter'     => 'nation',
+                        'value'         => ucwords($nation)
+                    ],
+            ]
+        );
     }
 
     /**

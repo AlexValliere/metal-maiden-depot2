@@ -6,8 +6,10 @@ use App\Entity\Nation;
 use App\Form\NationType;
 use App\Repository\NationRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -64,6 +66,25 @@ class NationController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+
+            if ( $nation->getImageName() && ($nation->getImageName() !== ($nation->getNameSlug().".png")) )
+            {
+                $path = $this->container->getParameter("nation_dir");
+                $imageName = $nation->getImageName();
+                $newImageName = $nation->getNameSlug().".png";
+
+                $imagePath = $path . $imageName;
+                $newImagePath = $path . $newImageName;
+
+                $fileSystem = new Filesystem();
+                $fileSystem->rename($imagePath, $newImagePath);
+
+                $nation->setImageName($newImageName);
+
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($nation);
+                $em->flush();
+            }
 
             return $this->redirectToRoute('admin_nation_edit', ['id' => $nation->getId()]);
         }

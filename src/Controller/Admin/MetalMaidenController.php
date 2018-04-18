@@ -7,8 +7,10 @@ use App\Entity\Nation;
 use App\Form\MetalMaidenType;
 use App\Repository\MetalMaidenRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -82,7 +84,26 @@ class MetalMaidenController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('metal_maiden_edit', ['id' => $metalMaiden->getId()]);
+            if ( $metalMaiden->getPortraitImageName() && ($metalMaiden->getPortraitImageName() !== ($metalMaiden->getAttireSlug().".png")) )
+            {
+                $path = $this->container->getParameter("metal_maiden_portrait_dir");
+                $portraitImageName = $metalMaiden->getPortraitImageName();
+                $newPortraitImageName = $metalMaiden->getAttireSlug().".png";
+
+                $portraitImagePath = $path . $portraitImageName;
+                $newPortraitImagePath = $path . $newPortraitImageName;
+
+                $fileSystem = new Filesystem();
+                $fileSystem->rename($portraitImagePath, $newPortraitImagePath);
+
+                $metalMaiden->setPortraitImageName($newPortraitImageName);
+
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($metalMaiden);
+                $em->flush();
+            }
+
+            return $this->redirectToRoute('admin_metal_maiden_edit', ['id' => $metalMaiden->getId()]);
         }
 
         return $this->render('admin/metal_maiden/edit.html.twig', [

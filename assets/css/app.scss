@@ -3,6 +3,7 @@
 html {
   position: relative;
   min-height: 100%;
+  padding-top: 4.5rem;
 }
 body {
   margin-bottom: 60px; /* Margin bottom by footer height */
@@ -33,11 +34,10 @@ body {
   color: #ffffff;
 }
 
-body > .container {
-  padding: 60px 15px 0;
-}
-
 code {
   font-size: 80%;
 }
 
+hr {
+  border-color: #9E9E9E;
+}

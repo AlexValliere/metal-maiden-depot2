@@ -50,6 +50,11 @@ class MetalMaiden
     private $attireSlug;
 
     /**
+     * @ORM\Column(type="integer", options={"default":0})
+     */
+    private $rarity;
+
+    /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      * 
      * @Vich\UploadableField(mapping="metal_maiden_portrait", fileNameProperty="portraitImageName", size="portraitImageSize")
@@ -91,29 +96,27 @@ class MetalMaiden
         $this->createdAt = new \DateTime();
     }
 
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
 
-    // public function getAttireCategory(): AttireCategory
     public function getAttireCategory(): ?AttireCategory
     {
         return $this->attireCategory;
     }
 
-    public function setAttireCategory(AttireCategory $attireCategory)
+    public function setAttireCategory(AttireCategory $attireCategory): void
     {
         $this->attireCategory = $attireCategory;
     }
 
-    // public function getNation(): Nation
     public function getNation(): ?Nation
     {
         return $this->nation;
     }
 
-    public function setNation(Nation $nation)
+    public function setNation(Nation $nation): void
     {
         $this->nation = $nation;
     }
@@ -123,11 +126,9 @@ class MetalMaiden
         return $this->name;
     }
 
-    public function setName(?string $name): self
+    public function setName(?string $name): void
     {
         $this->name = $name;
-
-        return $this;
     }
 
     public function getAttire(): ?string
@@ -135,27 +136,29 @@ class MetalMaiden
         return $this->attire;
     }
 
-    public function setAttire(string $attire): self
+    public function setAttire(string $attire): void
     {
         $this->attire = $attire;
-
-        return $this;
     }
 
-    /**
-     * @param string $attireSlug
-     */
-    public function setAttireSlug($attireSlug): void
+    public function getAttireSlug(): ?string
+    {
+        return $this->attireSlug;
+    }
+
+    public function setAttireSlug(string $attireSlug): void
     {
         $this->attireSlug = $attireSlug;
     }
 
-    /**
-     * @return string
-     */
-    public function getAttireSlug(): ?string
+    public function getRarity(): ?int
     {
-        return $this->attireSlug;
+        return $this->rarity;
+    }
+
+    public function setRarity(int $rarity): void
+    {
+        $this->rarity = $rarity;
     }
 
     /**

@@ -69,7 +69,7 @@ class NationController extends Controller
 
             if ( $nation->getImageName() && ($nation->getImageName() !== ($nation->getNameSlug().".png")) )
             {
-                $path = $this->container->getParameter("nation_dir");
+                $path = $this->container->getParameter("asset_paths.nation_dir");
                 $imageName = $nation->getImageName();
                 $newImageName = $nation->getNameSlug().".png";
 

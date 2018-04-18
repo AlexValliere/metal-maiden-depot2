@@ -16,7 +16,10 @@
         {% for metal_maiden in metal_maidens|sort %}
         <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2">
             <div class="card box-shadow mb-4 bg-transparent text-white border-0">
-                <img class="card-img-top rounded metal-maiden-portrait-image" data-src="holder.js/157px146?theme=thumb&bg=55595c&fg=eceeef&text=Image" src="{{ vich_uploader_asset(metal_maiden, 'portraitImageFile') }}" alt="Card image cap">
+                <div class="metal-maiden-portrait-wrapper">
+                    <img class="card-img-top rounded metal-maiden-portrait-image" data-src="holder.js/157px146?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Image" src="{{ vich_uploader_asset(metal_maiden, 'portraitImageFile') }}" alt="Card image cap">
+                    <img class="metal-maiden-rarity" src="{{ '/' ~ asset_paths["attire_category"] ~ 'tier-' ~ metal_maiden.rarity ~ '.png' }}" alt="Metal maiden rarity" />
+                </div>
                 <div class="card-body">
                     <h5 class="card-title small">{{ metal_maiden.attire }}</h5>
                     <h6 class="card-subtitle small text-muted">{{ metal_maiden.name }}</h6>

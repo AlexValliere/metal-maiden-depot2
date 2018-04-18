@@ -44,3 +44,10 @@ hr {
 
 .box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .4); }
 img.metal-maiden-portrait-image { border-radius: 1rem!important; }
+div.metal-maiden-portrait-wrapper { position: relative; }
+div.metal-maiden-portrait-wrapper img.metal-maiden-rarity {
+  position: absolute;
+  bottom: 2px;
+  left: 2px;
+  height: 2rem;
+}

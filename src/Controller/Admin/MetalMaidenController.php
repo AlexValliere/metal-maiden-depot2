@@ -86,7 +86,7 @@ class MetalMaidenController extends Controller
 
             if ( $metalMaiden->getPortraitImageName() && ($metalMaiden->getPortraitImageName() !== ($metalMaiden->getAttireSlug().".png")) )
             {
-                $path = $this->container->getParameter("metal_maiden_portrait_dir");
+                $path = $this->container->getParameter("asset_paths.metal_maiden_portrait");
                 $portraitImageName = $metalMaiden->getPortraitImageName();
                 $newPortraitImageName = $metalMaiden->getAttireSlug().".png";
 

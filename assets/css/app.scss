@@ -46,6 +46,16 @@ hr {
 img.metal-maiden-portrait-image { border-radius: 1rem!important; }
 div.metal-maiden-portrait-wrapper { position: relative; }
 
+div.card.bg-transparent,div.card.bg-transparent:hover {
+  -webkit-transition: background-color 400ms; /* Safari */
+  transition: background-color 400ms;
+}
+
+div.card.bg-transparent:hover {
+  /* background-color: rgba(210, 180, 140, 0.12) !important; */
+  background-color: rgba(96, 113, 139, 0.2) !important;
+}
+
 div.metal-maiden-portrait-wrapper img.metal-maiden-rarity {
   position: absolute;
   bottom: 2px;

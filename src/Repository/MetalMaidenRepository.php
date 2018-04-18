@@ -46,7 +46,7 @@ class MetalMaidenRepository extends ServiceEntityRepository
         ->addSelect('n')
         ->andWhere('a.abbreviation = :attire_category_abbreviation')
         ->setParameter('attire_category_abbreviation', $attireCategoryAbbreviation)
-        ->orderBy('m.nation', 'ASC')
+        ->orderBy('m.attire', 'ASC')
       ;
 
       return $qb

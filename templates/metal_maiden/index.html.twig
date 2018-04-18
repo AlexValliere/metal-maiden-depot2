@@ -1,19 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}MetalMaiden index{% endblock %}
+{% block title %}Metal Maiden list{% if metal_maidens_filter is defined %} by {{ metal_maidens_filter["parameter"] }}: {{ metal_maidens_filter["value"] }}{% endif %}{% endblock %}
 
 {% block body %}
 
 <h1>Metal Maiden list</h1>
-{% if metal_maidens_filter is defined %}
-    <p class="text-muted">By {{ metal_maidens_filter["parameter"] }}: {{ metal_maidens_filter["value"] }}</p>
-{% endif %}
+<p class="text-muted">
+    {% if metal_maidens_filter is defined %}
+        By {{ metal_maidens_filter["parameter"] }}: {{ metal_maidens_filter["value"] }}<br />
+    {% endif %}
+    Results: {{ metal_maidens|length }}
+</p>
 <hr />
 
 <div class="album">
     <div class="container">
         <div class="row">
-        {% for metal_maiden in metal_maidens|sort %}
+        {% for metal_maiden in metal_maidens %}
         <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2">
             <div class="card box-shadow mb-4 bg-transparent text-white border-0">
                 <div class="metal-maiden-portrait-wrapper">

@@ -38,6 +38,38 @@ class MetalMaidenRepository extends ServiceEntityRepository
         ;
     }
 
+    public function findAllByAttireCategoryAbbreviationOrNationName($options = [])
+    {
+
+        $queryBuilder = $this
+            ->createQueryBuilder('m')
+            ->leftJoin('m.attireCategory', 'a')
+            ->addSelect('a')
+            ->leftJoin('m.nation', 'n')
+            ->addSelect('n');
+
+        if ( !empty($options['attire_category_abbreviation']) )
+        {
+            $queryBuilder
+                ->andWhere('a.abbreviation = :attire_category_abbreviation')
+                ->setParameter('attire_category_abbreviation', $options['attire_category_abbreviation']);
+        }
+        if ( !empty($options['nation_name']) )
+        {
+            $queryBuilder
+                ->andWhere('n.name = :nation_name')
+                ->setParameter('nation_name', $options['nation_name']);
+        }
+
+        $queryBuilder->addOrderBy('m.attireCategory', 'ASC');
+        $queryBuilder->addOrderBy('m.attire', 'ASC');
+
+        return $queryBuilder
+            ->getQuery()
+            ->getResult();
+        ;
+    }
+
     public function findByAttireCategoryOrNation($options = [])
     {
 

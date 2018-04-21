@@ -41,9 +41,11 @@ class MetalMaidenController extends Controller
     }
 
     /**
-     * @Route("/attire-category/{attireCategoryAbbreviation}", name="metal_maiden_index_by_attire_category", methods="GET")
+     * @Route("/attire-category/{attireCategoryAbbreviation}", name="metal_maiden_index_filtered_by_attire_category_abbreviation", methods="GET")
+     * @Route("/nation/{nationName}", name="metal_maiden_index_filtered_by_nation_name", methods="GET")
+     * @Route("/nation/{nationName}/attire-category/{attireCategoryAbbreviation}", name="metal_maiden_index_filtered_by_attire_category_abbreviation_and_nation_name", methods="GET")
      */
-    public function indexByAttireCategory(MetalMaidenRepository $metalMaidenRepository, $attireCategoryAbbreviation): Response
+    public function indexFiltered(MetalMaidenRepository $metalMaidenRepository, $nationName = "", $attireCategoryAbbreviation = ""): Response
     {
         $nations = $this->getDoctrine()
             ->getRepository(Nation::class)
@@ -57,39 +59,16 @@ class MetalMaidenController extends Controller
             'metal_maiden/index.html.twig',
             [
                 'attire_categories'     => $attireCategories,
-                'metal_maidens'         => $metalMaidenRepository->findByAttireCategoryOrNation(['attire_category_abbreviation' => $attireCategoryAbbreviation]),
+                'metal_maidens'         => $metalMaidenRepository->findAllByAttireCategoryAbbreviationOrNationName(
+                                            [
+                                                'attire_category_abbreviation' => $attireCategoryAbbreviation,
+                                                'nation_name' => $nationName,
+                                            ]
+                                        ),
                 'metal_maidens_filter'  =>
                     [
-                        'parameter'     => 'attire category',
-                        'value'         => strtoupper($attireCategoryAbbreviation),
-                    ],
-                'nations' => $nations,
-            ]
-        );
-    }
-
-    /**
-     * @Route("/nation/{nation}", name="metal_maiden_index_by_nation", methods="GET")
-     */
-    public function indexByNation(MetalMaidenRepository $metalMaidenRepository, $nation): Response
-    {
-        $nations = $this->getDoctrine()
-            ->getRepository(Nation::class)
-            ->findAll();
-
-        $attireCategories = $this->getDoctrine()
-            ->getRepository(AttireCategory::class)
-            ->findAll();
-
-        return $this->render(
-            'metal_maiden/index.html.twig',
-            [
-                'attire_categories'     => $attireCategories,
-                'metal_maidens'         => $metalMaidenRepository->findByAttireCategoryOrNation(['nation_name' => $nation]),
-                'metal_maidens_filter'  =>
-                    [
-                        'parameter'     => 'nation',
-                        'value'         => ucwords($nation),
+                        'attire_category_abbreviation' => $attireCategoryAbbreviation,
+                        'nation_name'                  => $nationName,
                     ],
                 'nations' => $nations,
             ]

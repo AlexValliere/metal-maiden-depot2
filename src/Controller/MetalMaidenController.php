@@ -57,7 +57,7 @@ class MetalMaidenController extends Controller
             'metal_maiden/index.html.twig',
             [
                 'attire_categories'     => $attireCategories,
-                'metal_maidens'         => $metalMaidenRepository->findByAttireCategoryWithAttireCategoriesAndNations($attireCategoryAbbreviation),
+                'metal_maidens'         => $metalMaidenRepository->findByAttireCategoryOrNation(['attire_category_abbreviation' => $attireCategoryAbbreviation]),
                 'metal_maidens_filter'  =>
                     [
                         'parameter'     => 'attire category',

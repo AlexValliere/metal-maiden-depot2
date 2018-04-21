@@ -77,12 +77,16 @@ div.card,div.card:hover, div.card .text-muted, div.card:hover .text-muted {
   transition: 500ms;
 }
 
-img.metal_maidens_filter {
+img.metal-maidens-filter {
   opacity: 0.5;
   filter: alpha(opacity=50); /* For IE8 and earlier */
 }
 
-img.metal_maidens_filter.active {
+img.metal-maidens-filter.active {
   opacity: 1;
   filter: alpha(opacity=1); /* For IE8 and earlier */
+}
+
+img.metal-maidens-filter.attire-category-icon {
+  height: 3em;
 }

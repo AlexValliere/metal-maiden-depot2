@@ -18,9 +18,21 @@
 {% for nation in nations %}
     <a href="{{ path('metal_maiden_index_by_nation', {'nation': nation.name}) }}">
         <img
-            class="metal_maidens_filter {% if metal_maidens_filter is defined and metal_maidens_filter["parameter"] == "nation" and metal_maidens_filter["value"] == nation.name %}active{% endif %}"
+            class="metal-maidens-filter {% if metal_maidens_filter is defined and metal_maidens_filter["parameter"] == "nation" and metal_maidens_filter["value"] == nation.name %}active{% endif %}"
             src="{{ vich_uploader_asset(nation, 'imageFile') }}"
             alt="{{ nation.name }}'s national flag"
+        />
+    </a>
+{% endfor %}
+
+<br />
+
+{% for attire_category in attire_categories %}
+    <a href="{{ path('metal_maiden_index_by_attire_category', {'attireCategoryAbbreviation': attire_category.abbreviation}) }}">
+        <img
+            class="metal-maidens-filter attire-category-icon {% if metal_maidens_filter is defined and metal_maidens_filter["parameter"] == "attire category" and metal_maidens_filter["value"] == attire_category.abbreviation %}active{% endif %}"
+            src="{{ '/' ~ asset_paths["attire_category"] ~ attire_category.abbreviation|lower ~ '.png' }}"
+            alt="{{ attire_category.name }}'s attire category icon"
         />
     </a>
 {% endfor %}
@@ -29,16 +41,16 @@
 
 <div class="album">
     <div class="container">
-        
-            {% for attire_category in attire_categories %}
+        {% for attire_category in attire_categories %}
+            {% if metal_maidens_filter is defined and metal_maidens_filter["parameter"] != "attire category" %}
                 <p>
                     <img class="metal-maiden-attire-category" src="{{ '/' ~ asset_paths["attire_category"] ~ attire_category.abbreviation|lower ~ '.png' }}" alt="Metal maiden rarity" />
                     {{ attire_category.name }}
                 </p>
                 <hr />
-                <div class="row">
+            {% endif %}
+            <div class="row">
                 {% for metal_maiden in metal_maidens if metal_maiden.attireCategory.abbreviation == attire_category.abbreviation %}
-
                     <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2">
                         <div class="metal-maiden card box-shadow mb-4 text-white border-0">
                             <div class="metal-maiden-portrait-wrapper">
@@ -49,22 +61,22 @@
                                 <h5 class="card-title small">{{ metal_maiden.attire }}</h5>
                                 <h6 class="card-subtitle small text-muted">{{ metal_maiden.name }}</h6>
                                 <div class="d-flex justify-content-between align-items-center">
-            <!--                         <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div> -->
                                 </div>
                             </div>
                             {% if metal_maidens_filter is not defined %}
                                 <div class="card-footer">
                                     <small class="text-muted">{{ metal_maiden.attireCategory.abbreviation }} - {{ metal_maiden.nation.name }}</small>
                                 </div>
+                            {% elseif metal_maidens_filter is defined and metal_maidens_filter["parameter"] == "attire category" %}
+                                <div class="card-footer">
+                                    <small class="text-muted">{{ metal_maiden.nation.name }}</small>
+                                </div>
                             {% endif %}
                         </div>
                     </div>
                 {% endfor %}
             </div>
-            {% endfor %}
+        {% endfor %}
 
     </div>
 </div>

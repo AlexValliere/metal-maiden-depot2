@@ -43,12 +43,14 @@ hr {
 }
 
 .box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .4); }
+.text-muted { color: #919191 !important; }
+
 img.metal-maiden-portrait-image { border-radius: 1rem!important; }
 div.metal-maiden-portrait-wrapper { position: relative; }
 
-div.card.bg-transparent,div.card.bg-transparent:hover {
-  -webkit-transition: background-color 400ms; /* Safari */
-  transition: background-color 400ms;
+div.card.bg-transparent,div.card.bg-transparent:hover, div.card.bg-transparent .text-muted, div.card.bg-transparent:hover .text-muted {
+  -webkit-transition: 500ms; /* Safari */
+  transition: 500ms;
 }
 
 div.card.bg-transparent:hover {
@@ -56,9 +58,27 @@ div.card.bg-transparent:hover {
   background-color: rgba(96, 113, 139, 0.2) !important;
 }
 
+div.card.bg-transparent:hover .text-muted {
+  color: #cccccc !important;
+}
+
+p img.metal-maiden-attire-category {
+  height: 2em;
+}
+
 div.metal-maiden-portrait-wrapper img.metal-maiden-rarity {
   position: absolute;
   bottom: 2px;
   left: 2px;
   height: 2rem;
+}
+
+img.metal_maidens_filter {
+  opacity: 0.5;
+  filter: alpha(opacity=50); /* For IE8 and earlier */
+}
+
+img.metal_maidens_filter.active {
+  opacity: 1;
+  filter: alpha(opacity=1); /* For IE8 and earlier */
 }

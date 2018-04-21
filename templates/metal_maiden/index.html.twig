@@ -11,36 +11,61 @@
     {% endif %}
     Results: {{ metal_maidens|length }}
 </p>
+
+<a href="{{ path('metal_maiden_index') }}">
+    <i class="fa fa-undo fa-2x"></i>
+</a>
+{% for nation in nations %}
+    <a href="{{ path('metal_maiden_index_by_nation', {'nation': nation.name}) }}">
+        <img
+            class="metal_maidens_filter {% if metal_maidens_filter is defined and metal_maidens_filter["parameter"] == "nation" and metal_maidens_filter["value"] == nation.name %}active{% endif %}"
+            src="{{ vich_uploader_asset(nation, 'imageFile') }}"
+            alt="{{ nation.name }}'s national flag"
+        />
+    </a>
+{% endfor %}
+
 <hr />
 
 <div class="album">
     <div class="container">
-        <div class="row">
-        {% for metal_maiden in metal_maidens %}
-        <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2">
-            <div class="card box-shadow mb-4 bg-transparent text-white border-0">
-                <div class="metal-maiden-portrait-wrapper">
-                    <img class="card-img-top rounded metal-maiden-portrait-image" data-src="holder.js/157px146?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Image" src="{{ vich_uploader_asset(metal_maiden, 'portraitImageFile') }}" alt="Card image cap">
-                    <img class="metal-maiden-rarity" src="{{ '/' ~ asset_paths["attire_category"] ~ 'tier-' ~ metal_maiden.rarity ~ '.png' }}" alt="Metal maiden rarity" />
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title small">{{ metal_maiden.attire }}</h5>
-                    <h6 class="card-subtitle small text-muted">{{ metal_maiden.name }}</h6>
-                    <div class="d-flex justify-content-between align-items-center">
-<!--                         <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                        </div> -->
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <small class="text-muted">{{ metal_maiden.attireCategory.abbreviation }} - {{ metal_maiden.nation.name }}</small>
-                </div>
-            </div>
-        </div>
+        
+            {% for attire_category in attire_categories %}
+                <p>
+                    <img class="metal-maiden-attire-category" src="{{ '/' ~ asset_paths["attire_category"] ~ attire_category.abbreviation|lower ~ '.png' }}" alt="Metal maiden rarity" />
+                    {{ attire_category.name }}
+                </p>
+                <hr />
+                <div class="row">
+                {% for metal_maiden in metal_maidens if metal_maiden.attireCategory.abbreviation == attire_category.abbreviation %}
 
-        {% endfor %}
-        </div>
+                    <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2">
+                        <div class="card box-shadow mb-4 bg-transparent text-white border-0">
+                            <div class="metal-maiden-portrait-wrapper">
+                                <img class="card-img-top rounded metal-maiden-portrait-image" data-src="holder.js/157px146?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Image" src="{{ vich_uploader_asset(metal_maiden, 'portraitImageFile') }}" alt="Card image cap">
+                                <img class="metal-maiden-rarity" src="{{ '/' ~ asset_paths["attire_category"] ~ 'tier-' ~ metal_maiden.rarity ~ '.png' }}" alt="Metal maiden rarity" />
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title small">{{ metal_maiden.attire }}</h5>
+                                <h6 class="card-subtitle small text-muted">{{ metal_maiden.name }}</h6>
+                                <div class="d-flex justify-content-between align-items-center">
+            <!--                         <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                    </div> -->
+                                </div>
+                            </div>
+                            {% if metal_maidens_filter is not defined %}
+                                <div class="card-footer">
+                                    <small class="text-muted">{{ metal_maiden.attireCategory.abbreviation }} - {{ metal_maiden.nation.name }}</small>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+
     </div>
 </div>
 

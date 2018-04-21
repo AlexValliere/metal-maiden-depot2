@@ -20,20 +20,54 @@ class MetalMaidenRepository extends ServiceEntityRepository
         parent::__construct($registry, MetalMaiden::class);
     }
 
-    public function findAllWithAttireCategoriesAndNations()
+    public function findAllWithJoin()
     {
-      $qb = $this
-        ->createQueryBuilder('m')
-        ->leftJoin('m.attireCategory', 'a')
-        ->addSelect('a')
-        ->leftJoin('m.nation', 'n')
-        ->addSelect('n')
-      ;
+        $queryBuilder = $this
+            ->createQueryBuilder('m')
+            ->leftJoin('m.attireCategory', 'a')
+            ->addSelect('a')
+            ->leftJoin('m.nation', 'n')
+            ->addSelect('n')
+        ;
 
-      return $qb
-        ->getQuery()
-        ->getResult()
-      ;
+        $queryBuilder->addOrderBy('m.attire', 'ASC');
+
+        return $queryBuilder
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findByAttireCategoryOrNation($options = [])
+    {
+
+        $queryBuilder = $this
+            ->createQueryBuilder('m')
+            ->leftJoin('m.attireCategory', 'a')
+            ->addSelect('a')
+            ->leftJoin('m.nation', 'n')
+            ->addSelect('n');
+
+        if ( array_key_exists('attire_category_abbreviation', $options) )
+        {
+            $queryBuilder
+                ->andWhere('a.abbreviation = :attire_category_abbreviation')
+                ->setParameter('attire_category_abbreviation', $options['attire_category_abbreviation']);
+        }
+        if ( array_key_exists('nation_name', $options) )
+        {
+            $queryBuilder
+                ->andWhere('n.name = :nation_name')
+                ->setParameter('nation_name', $options['nation_name']);
+        }
+
+        $queryBuilder->addOrderBy('m.attireCategory', 'ASC');
+        $queryBuilder->addOrderBy('m.attire', 'ASC');
+
+        return $queryBuilder
+            ->getQuery()
+            ->getResult();
+        ;
     }
 
     public function findByAttireCategoryWithAttireCategoriesAndNations($attireCategoryAbbreviation)

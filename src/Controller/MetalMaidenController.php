@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\AttireCategory;
 use App\Entity\MetalMaiden;
 use App\Entity\Nation;
 use App\Form\MetalMaidenType;
@@ -21,9 +22,21 @@ class MetalMaidenController extends Controller
      */
     public function index(MetalMaidenRepository $metalMaidenRepository): Response
     {
+        $nations = $this->getDoctrine()
+            ->getRepository(Nation::class)
+            ->findAll();
+
+        $attireCategories = $this->getDoctrine()
+            ->getRepository(AttireCategory::class)
+            ->findAll();
+
         return $this->render(
             'metal_maiden/index.html.twig',
-            ['metal_maidens' => $metalMaidenRepository->findAllWithAttireCategoriesAndNations()]
+            [
+                'attire_categories'     => $attireCategories,
+                'metal_maidens'         => $metalMaidenRepository->findAllWithJoin(),
+                'nations'               => $nations,
+            ]
         );
     }
 
@@ -32,15 +45,25 @@ class MetalMaidenController extends Controller
      */
     public function indexByAttireCategory(MetalMaidenRepository $metalMaidenRepository, $attireCategoryAbbreviation): Response
     {
+        $nations = $this->getDoctrine()
+            ->getRepository(Nation::class)
+            ->findAll();
+
+        $attireCategories = $this->getDoctrine()
+            ->getRepository(AttireCategory::class)
+            ->findAll();
+
         return $this->render(
             'metal_maiden/index.html.twig',
             [
+                'attire_categories'     => $attireCategories,
                 'metal_maidens'         => $metalMaidenRepository->findByAttireCategoryWithAttireCategoriesAndNations($attireCategoryAbbreviation),
                 'metal_maidens_filter'  =>
                     [
                         'parameter'     => 'attire category',
-                        'value'         => strtoupper($attireCategoryAbbreviation)
+                        'value'         => strtoupper($attireCategoryAbbreviation),
                     ],
+                'nations' => $nations,
             ]
         );
     }
@@ -50,15 +73,25 @@ class MetalMaidenController extends Controller
      */
     public function indexByNation(MetalMaidenRepository $metalMaidenRepository, $nation): Response
     {
+        $nations = $this->getDoctrine()
+            ->getRepository(Nation::class)
+            ->findAll();
+
+        $attireCategories = $this->getDoctrine()
+            ->getRepository(AttireCategory::class)
+            ->findAll();
+
         return $this->render(
             'metal_maiden/index.html.twig',
             [
-                'metal_maidens'         => $metalMaidenRepository->findByNationWithAttireCategoriesAndNations($nation),
+                'attire_categories'     => $attireCategories,
+                'metal_maidens'         => $metalMaidenRepository->findByAttireCategoryOrNation(['nation_name' => $nation]),
                 'metal_maidens_filter'  =>
                     [
                         'parameter'     => 'nation',
-                        'value'         => ucwords($nation)
+                        'value'         => ucwords($nation),
                     ],
+                'nations' => $nations,
             ]
         );
     }

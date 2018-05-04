@@ -23,23 +23,42 @@ class MetalMaidenController extends Controller
      */
     public function index(MetalMaidenRepository $metalMaidenRepository): Response
     {
-        return $this->render('admin/metal_maiden/index.html.twig', ['metal_maidens' => $metalMaidenRepository->findAllWithAttireCategoriesAndNations()]);
+        return $this->render('admin/metal_maiden/index.html.twig', ['metal_maidens' => $metalMaidenRepository->findAllWithJoin()]);
     }
 
     /**
-     * @Route("/attire-category/{attireCategoryAbbreviation}", name="admin_metal_maiden_index_by_attire_category", methods="GET")
+     * @Route("/attire-category/{attireCategoryAbbreviation}", name="metal_maiden_index_filtered_by_attire_category_abbreviation", methods="GET")
+     * @Route("/nation/{nationName}", name="metal_maiden_index_filtered_by_nation_name", methods="GET")
+     * @Route("/nation/{nationName}/attire-category/{attireCategoryAbbreviation}", name="metal_maiden_index_filtered_by_attire_category_abbreviation_and_nation_name", methods="GET")
      */
-    public function indexByAttireCategory(MetalMaidenRepository $metalMaidenRepository, $attireCategoryAbbreviation): Response
+    public function indexFiltered(MetalMaidenRepository $metalMaidenRepository, $nationName = "", $attireCategoryAbbreviation = ""): Response
     {
-        return $this->render('admin/metal_maiden/index.html.twig', ['metal_maidens' => $metalMaidenRepository->findByAttireCategoryWithAttireCategoriesAndNations($attireCategoryAbbreviation)]);
-    }
+        $nations = $this->getDoctrine()
+            ->getRepository(Nation::class)
+            ->findAll();
 
-    /**
-     * @Route("/nation/{nation}", name="admin_metal_maiden_index_by_nation", methods="GET")
-     */
-    public function indexByNation(MetalMaidenRepository $metalMaidenRepository, $nation): Response
-    {
-        return $this->render('admin/metal_maiden/index.html.twig', ['metal_maidens' => $metalMaidenRepository->findByNationWithAttireCategoriesAndNations($nation)]);
+        $attireCategories = $this->getDoctrine()
+            ->getRepository(AttireCategory::class)
+            ->findAll();
+
+        return $this->render(
+            'admin/metal_maiden/index.html.twig',
+            [
+                'attire_categories'     => $attireCategories,
+                'metal_maidens'         => $metalMaidenRepository->findAllByAttireCategoryAbbreviationOrNationName(
+                                            [
+                                                'attire_category_abbreviation' => $attireCategoryAbbreviation,
+                                                'nation_name' => $nationName,
+                                            ]
+                                        ),
+                'metal_maidens_filter'  =>
+                    [
+                        'attire_category_abbreviation' => $attireCategoryAbbreviation,
+                        'nation_name'                  => $nationName,
+                    ],
+                'nations' => $nations,
+            ]
+        );
     }
 
     /**
@@ -66,7 +85,7 @@ class MetalMaidenController extends Controller
     }
 
     /**
-     * @Route("/{id}", name="admin_metal_maiden_show", methods="GET")
+     * @Route("/{attireSlug}", name="admin_metal_maiden_show", methods="GET")
      */
     public function show(MetalMaiden $metalMaiden): Response
     {
@@ -74,7 +93,7 @@ class MetalMaidenController extends Controller
     }
 
     /**
-     * @Route("/{id}/edit", name="admin_metal_maiden_edit", methods="GET|POST")
+     * @Route("/{attireSlug}/edit", name="admin_metal_maiden_edit", methods="GET|POST")
      */
     public function edit(Request $request, MetalMaiden $metalMaiden): Response
     {
@@ -113,7 +132,7 @@ class MetalMaidenController extends Controller
     }
 
     /**
-     * @Route("/{id}", name="admin_metal_maiden_delete", methods="DELETE")
+     * @Route("/{attireSlug}", name="admin_metal_maiden_delete", methods="DELETE")
      */
     public function delete(Request $request, MetalMaiden $metalMaiden): Response
     {

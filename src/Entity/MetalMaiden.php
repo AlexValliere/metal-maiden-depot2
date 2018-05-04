@@ -96,7 +96,7 @@ class MetalMaiden
         $this->createdAt = new \DateTime();
     }
 
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }

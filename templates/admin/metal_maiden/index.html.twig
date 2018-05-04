@@ -1,9 +1,15 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/dashboard/base.html.twig' %}
 
 {% block title %}MetalMaiden index{% endblock %}
 
 {% block body %}
-    <h1>MetalMaiden index</h1>
+    <h1>Metal Maiden index</h1>
+
+    <div class="mb-2">
+        <a href="{{ path('admin_metal_maiden_new') }}">
+            <button type="button" class="btn btn-dark">Create new</button>
+        </a>
+    </div>
 
     <table class="table">
         <thead>
@@ -37,8 +43,8 @@
                 <td>{{ metal_maiden.createdAt ? metal_maiden.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ metal_maiden.updatedAt ? metal_maiden.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('admin_metal_maiden_show', {'id': metal_maiden.id}) }}">show</a>
-                    <a href="{{ path('admin_metal_maiden_edit', {'id': metal_maiden.id}) }}">edit</a>
+                    <a href="{{ path('admin_metal_maiden_show', {'attireSlug': metal_maiden.attireSlug}) }}">show</a>
+                    <a href="{{ path('admin_metal_maiden_edit', {'attireSlug': metal_maiden.attireSlug}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -48,6 +54,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('admin_metal_maiden_new') }}">Create new</a>
 {% endblock %}

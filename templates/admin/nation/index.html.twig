@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/dashboard/base.html.twig' %}
 
 {% block title %}Nation index{% endblock %}
 
@@ -29,8 +29,8 @@
                 <td>{{ nation.createdAt ? nation.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ nation.updatedAt ? nation.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('admin_nation_show', {'id': nation.id}) }}">show</a>
-                    <a href="{{ path('admin_nation_edit', {'id': nation.id}) }}">edit</a>
+                    <a href="{{ path('admin_nation_show', {'nameSlug': nation.nameSlug}) }}">show</a>
+                    <a href="{{ path('admin_nation_edit', {'nameSlug': nation.nameSlug}) }}">edit</a>
                 </td>
             </tr>
         {% else %}

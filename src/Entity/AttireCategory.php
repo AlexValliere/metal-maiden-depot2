@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AttireCategoryRepository")
@@ -33,6 +34,12 @@ class AttireCategory
      * @ORM\Column(type="string", length=255)
      */
     private $name;
+
+    /**
+     * @Gedmo\Slug(fields={"name"})
+     * @ORM\Column(name="nameSlug", type="string", length=255, unique=true)
+    */
+    private $nameSlug;
 
     /**
      * @ORM\Column(type="datetime")
@@ -89,6 +96,22 @@ class AttireCategory
         $this->name = $name;
 
         return $this;
+    }
+
+    /**
+     * @param string $nameSlug
+     */
+    public function setNameSlug($nameSlug)
+    {
+        $this->nameSlug = $nameSlug;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNameSlug()
+    {
+        return $this->nameSlug;
     }
 
     public function getCreatedAt(): \DateTime

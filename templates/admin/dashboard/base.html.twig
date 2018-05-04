@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin portal - Metal Maiden Depot{% endblock %}
+
+{% block navScroller %}
+<div class="nav-scroller box-shadow">
+		<nav class="nav nav-underline">
+				<a class="nav-link active" href="{{ path('admin_index') }}">Dashboard</a>
+				<a class="nav-link" href="{{ path('admin_metal_maiden_index') }}">Metal Maidens</a>
+				<a class="nav-link" href="#">Armors</a>
+				<a class="nav-link" href="{{ path('admin_attire_category_index') }}">Attire Categories</a>
+				<a class="nav-link" href="#">Chassis</a>
+				<a class="nav-link" href="{{ path('admin_nation_index') }}">Nations</a>
+				<a class="nav-link" href="#">Shells</a>
+				<a class="nav-link" href="#">Users</a>
+				<!-- <a class="nav-link" href="#">
+					Friends
+					<span class="badge badge-pill bg-light align-text-bottom">27</span>
+				</a> -->
+		</nav>
+</div>
+{% endblock %}
+
+{% block body %}
+
+{% endblock %}

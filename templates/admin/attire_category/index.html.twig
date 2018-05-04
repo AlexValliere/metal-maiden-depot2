@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/dashboard/base.html.twig' %}
 
 {% block title %}AttireCategory index{% endblock %}
 
@@ -21,8 +21,8 @@
                 <td>{{ attire_category.abbreviation }}</td>
                 <td>{{ attire_category.name }}</td>
                 <td>
-                    <a href="{{ path('admin_attire_category_show', {'id': attire_category.id}) }}">show</a>
-                    <a href="{{ path('admin_attire_category_edit', {'id': attire_category.id}) }}">edit</a>
+                    <a href="{{ path('admin_attire_category_show', {'nameSlug': attire_category.nameSlug}) }}">show</a>
+                    <a href="{{ path('admin_attire_category_edit', {'nameSlug': attire_category.nameSlug}) }}">edit</a>
                 </td>
             </tr>
         {% else %}

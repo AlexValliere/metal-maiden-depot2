@@ -49,7 +49,7 @@ class NationController extends Controller
     }
 
     /**
-     * @Route("/{id}", name="admin_nation_show", methods="GET")
+     * @Route("/{nameSlug}", name="admin_nation_show", methods="GET")
      */
     public function show(Nation $nation): Response
     {
@@ -57,7 +57,7 @@ class NationController extends Controller
     }
 
     /**
-     * @Route("/{id}/edit", name="admin_nation_edit", methods="GET|POST")
+     * @Route("/{nameSlug}/edit", name="admin_nation_edit", methods="GET|POST")
      */
     public function edit(Request $request, Nation $nation): Response
     {
@@ -96,7 +96,7 @@ class NationController extends Controller
     }
 
     /**
-     * @Route("/{id}", name="admin_nation_delete", methods="DELETE")
+     * @Route("/{nameSlug}", name="admin_nation_delete", methods="DELETE")
      */
     public function delete(Request $request, Nation $nation): Response
     {

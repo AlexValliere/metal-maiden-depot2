@@ -24,7 +24,7 @@
 
     <a href="{{ path('admin_attire_category_index') }}">back to list</a>
 
-    <a href="{{ path('admin_attire_category_edit', {'id': attire_category.id}) }}">edit</a>
+    <a href="{{ path('admin_attire_category_edit', {'nameSlug': attire_category.nameSlug}) }}">edit</a>
 
     {{ include('admin/attire_category/_delete_form.html.twig') }}
 {% endblock %}

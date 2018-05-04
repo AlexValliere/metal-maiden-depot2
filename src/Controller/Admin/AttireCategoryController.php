@@ -47,7 +47,7 @@ class AttireCategoryController extends Controller
     }
 
     /**
-     * @Route("/{id}", name="admin_attire_category_show", methods="GET")
+     * @Route("/{nameSlug}", name="admin_attire_category_show", methods="GET")
      */
     public function show(AttireCategory $attireCategory): Response
     {
@@ -55,7 +55,7 @@ class AttireCategoryController extends Controller
     }
 
     /**
-     * @Route("/{id}/edit", name="admin_attire_category_edit", methods="GET|POST")
+     * @Route("/{nameSlug}/edit", name="admin_attire_category_edit", methods="GET|POST")
      */
     public function edit(Request $request, AttireCategory $attireCategory): Response
     {
@@ -75,7 +75,7 @@ class AttireCategoryController extends Controller
     }
 
     /**
-     * @Route("/{id}", name="admin_attire_category_delete", methods="DELETE")
+     * @Route("/{nameSlug}", name="admin_attire_category_delete", methods="DELETE")
      */
     public function delete(Request $request, AttireCategory $attireCategory): Response
     {

@@ -5,14 +5,19 @@
 {% block navScroller %}
 <div class="nav-scroller box-shadow">
 		<nav class="nav nav-underline">
-				<a class="nav-link active" href="{{ path('admin_index') }}">Dashboard</a>
-				<a class="nav-link" href="{{ path('admin_metal_maiden_index') }}">Metal Maidens</a>
-				<a class="nav-link" href="#">Armors</a>
-				<a class="nav-link" href="{{ path('admin_attire_category_index') }}">Attire Categories</a>
-				<a class="nav-link" href="#">Chassis</a>
-				<a class="nav-link" href="{{ path('admin_nation_index') }}">Nations</a>
-				<a class="nav-link" href="#">Shells</a>
-				<a class="nav-link" href="#">Users</a>
+				<a class="nav-link active" href="{{ path('admin_index') }}">{{ 'menu.dashboard'|trans }}</a>
+				<a class="nav-link" href="{{ path('admin_metal_maiden_index') }}">{{ 'menu.metal_maiden'|trans }}</a>
+				<a class="nav-link" href="#">{{ 'menu.armor'|trans }}</a>
+				<a class="nav-link" href="{{ path('admin_attire_category_index') }}">{{ 'menu.attire_category'|trans }}</a>
+				<a class="nav-link" href="#">{{ 'menu.chassis'|trans }}</a>
+				<a class="nav-link" href="{{ path('admin_nation_index') }}">{{ 'menu.nation'|trans }}</a>
+				<a class="nav-link" href="#">{{ 'menu.shell'|trans }}</a>
+				<a class="nav-link" href="#">{{ 'menu.user'|trans }}</a>
+				{% if app.user %}
+				<a class="nav-link" href="{{ path('security_logout') }}">
+					<i class="fa fa-sign-out" aria-hidden="true"></i> {{ 'menu.logout'|trans }}
+				</a>
+				{% endif %}
 				<!-- <a class="nav-link" href="#">
 					Friends
 					<span class="badge badge-pill bg-light align-text-bottom">27</span>

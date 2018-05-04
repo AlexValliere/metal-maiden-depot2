@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="{{ app.request.locale }}">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -22,25 +22,38 @@
 			<div class="collapse navbar-collapse" id="navbarCollapse">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item active">
-						<a class="nav-link" href="{{ path("homepage") }}">Metal Maidens <span class="sr-only">(current)</span></a>
+						<a class="nav-link" href="{{ path("homepage") }}">{{ 'navbar.metal_maidens'|trans }} <span class="sr-only">(current)</span></a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">Terrains</a>
+						<a class="nav-link" href="#">{{ 'navbar.terrains'|trans }}</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link disabled" href="#">Help</a>
+						<a class="nav-link disabled" href="#">{{ 'navbar.help'|trans }}</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link disabled" href="#">Others</a>
+						<a class="nav-link disabled" href="#">{{ 'navbar.others'|trans }}</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link disabled" href="{{ path('admin_index') }}">Admin</a>
+						<a class="nav-link disabled" href="{{ path('admin_index') }}">{{ 'navbar.admin'|trans }}</a>
 					</li>
 				</ul>
 				<form class="form-inline mt-2 mt-md-0">
-					<input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+					<input class="form-control mr-sm-2" type="text" placeholder="{{ 'navbar.search'|trans }}" aria-label="Search">
+					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">{{ 'navbar.search'|trans }}</button>
 				</form>
+				<ul class="navbar-nav navbar-right">
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="locales" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<i class="fa fa-globe" aria-hidden="true"></i>
+							<span class="sr-only">{{ 'navbar.choose_language'|trans }}</span>
+						</a>
+						<div class="dropdown-menu locales box-shadow" aria-labelledby="locales">
+							{% for locale in locales() %}
+								<a {% if app.request.locale == locale.code %}aria-checked="true" class="dropdown-item active"{% else %}aria-checked="false" class="dropdown-item"{% endif %} href="{{ path(app.request.get('_route', 'metal_maiden_index'), app.request.get('_route_params', [])|merge({_locale: locale.code})) }}">{{ locale.name|capitalize }}</a>
+							{% endfor %}
+						</div>
+					</li>
+				</ul>
 			</div>
 		</nav>
 
@@ -49,12 +62,12 @@
 				<nav class="nav nav-underline">
 					{% if not app.user %}
 						<a class="nav-link" href="{{ path('security_login') }}">
-							<i class="fa fa-sign-in" aria-hidden="true"></i> {{ 'menu.signin'|trans }}
+							<i class="fa fa-sign-in" aria-hidden="true"></i> {{ 'action.sign_in'|trans }}
 						</a>
 					{% endif %}
 					{% if app.user %}
 						<a class="nav-link" href="{{ path('security_logout') }}">
-							<i class="fa fa-sign-out" aria-hidden="true"></i> {{ 'menu.logout'|trans }}
+							<i class="fa fa-sign-out" aria-hidden="true"></i> {{ 'action.logout'|trans }}
 						</a>
 					{% endif %}
 				</nav>

@@ -1,4 +1,13 @@
-/* Navscroller styles
+/* Navbar style
+-------------------------------------------------- */
+.navbar-right .dropdown-menu.locales {
+  right: 0;
+  left: auto;
+  background-color: #dedede;
+  color: #ffffff;
+}
+
+/* Navscroller style
 -------------------------------------------------- */
 html {
   overflow-x: hidden; /* Prevent scroll on narrow devices */
@@ -63,7 +72,7 @@ html {
   color: #ffffff;
 }
 
-/* Sticky footer styles
+/* Sticky footer style
 -------------------------------------------------- */
 html {
   position: relative;

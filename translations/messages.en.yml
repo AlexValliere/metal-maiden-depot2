@@ -1,0 +1,20 @@
+action:
+  logout: Logout
+  sign_in: Sign In
+
+label:
+  username: Username
+  password: Password
+
+navbar:
+  admin: Admin
+  choose_language: Choose a language
+  help: Help
+  metal_maidens: Metal Maidens
+  others: Others
+  search: Search
+  terrains: Terrains
+
+security:
+  title:
+    login: Login form

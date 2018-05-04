@@ -1,0 +1,20 @@
+action:
+  logout: Se déconnecter
+  sign_in: Se connecter
+
+label:
+  username: Nom d'utilisateur
+  password: Mot de passe
+
+navbar:
+  admin: Admin
+  choose_language: Choisir une langue
+  help: Aide
+  metal_maidens: Metal Maidens
+  others: Autres
+  search: Rechercher
+  terrains: Terrains
+
+security:
+  title:
+    login: Formulaire de connexion

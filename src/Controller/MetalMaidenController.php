@@ -99,7 +99,7 @@ class MetalMaidenController extends Controller
     }
 
     /**
-     * @Route("/{id}", name="metal_maiden_show", methods="GET")
+     * @Route("/{attireSlug}", name="metal_maiden_show", methods="GET")
      */
     public function show(MetalMaiden $metalMaiden): Response
     {

@@ -3,45 +3,60 @@
 {% block title %}MetalMaiden{% endblock %}
 
 {% block body %}
-    <h1>MetalMaiden</h1>
 
-    <div class="container">
-        <div class="row justify-content-md-center align-items-center">
-            <div class="col-md-auto">
-                <img src="{{ vich_uploader_asset(metal_maiden, 'portraitImageFile') }}" alt"{{ metal_maiden.attire }}'s portrait" />
-            </div>
-            <div class="col">
-                <table class="table">
-                    <tbody>
-                        <tr>
-                            <th>Id</th>
-                            <td>{{ metal_maiden.id }}</td>
-                        </tr>
-                        <tr>
-                            <th>Name</th>
-                            <td>{{ metal_maiden.name }}</td>
-                        </tr>
-                        <tr>
-                            <th>Attire</th>
-                            <td>{{ metal_maiden.attire }}</td>
-                        </tr>
-                        <tr>
-                            <th>Attire category</th>
-                            <td>{% if metal_maiden.attireCategory %}{{ metal_maiden.attireCategory.name }} {% endif %}</td>
-                        </tr>
-                        <tr>
-                            <th>Nation</th>
-                            <td>{% if metal_maiden.nation %}{{ metal_maiden.nation.name }} {% endif %}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+    <h1 class="font-weight-normal mb-4">{{ metal_maiden.attire }} <small class="text-muted">{{ metal_maiden.name }}</small></h1>
+
+    <hr />
+
+    <div class="media mb-4">
+        <img class="align-self-start mr-3" src="{{ vich_uploader_asset(metal_maiden, 'portraitImageFile') }}" alt="{{ metal_maiden.attire }}'s portrait">
+        <div class="media-body">
+            <h5 class="mt-0">{{ metal_maiden.attire }} <small class="d-inline-block">{% for i in 1 .. metal_maiden.rarity %}<i class="fa fa-star text-warning"></i>{% endfor %}</small></h5>
+            <h6 class="mt-0">{{ metal_maiden.name }}</h6>
+            <p>
+                {% if metal_maiden.attireCategory %}{{ metal_maiden.attireCategory.name }}{% endif %}
+                <br />
+                {% if metal_maiden.nation %}{{ metal_maiden.nation.name }}{% endif %}
+                <br />
+                <img src="http://www.metalmaidendepot.ovh/assets/images/tanks/equipments/slots/turret.png" alt="turret slot" style="height: 1.5em;">
+                <img src="http://www.metalmaidendepot.ovh/assets/images/tanks/equipments/slots/mod.png" alt="mod slot" style="height: 1.5em;">
+                <img src="http://www.metalmaidendepot.ovh/assets/images/tanks/equipments/slots/internal.png" alt="internal slot" style="height: 1.5em;">
+                <img src="http://www.metalmaidendepot.ovh/assets/images/tanks/equipments/slots/internal.png" alt="internal slot" style="height: 1.5em;">
+                <img src="http://www.metalmaidendepot.ovh/assets/images/tanks/equipments/slots/carriage.png" alt="carriage slot" style="height: 1.5em;">
+                <img src="http://www.metalmaidendepot.ovh/assets/images/tanks/equipments/slots/special.png" alt="special slot" style="height: 1.5em;">
+            </p>
         </div>
     </div>
 
-    <a href="{{ path('metal_maiden_index') }}">back to list</a>
+    <h6>Profile:</h6>
+    <p>Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
 
-    <a href="{{ path('metal_maiden_edit', {'id': metal_maiden.id}) }}">edit</a>
+    <div class="table-responsive">
+        <table class="table table-sm table-hover table-borderless">
+            <body>
+                {% for i in 1..4 %}
+                <tr>
+                    <th scope="row">Firepower</th>
+                    <td>890<br />2 389</th>
+                    <th scope="row">Firepower</th>
+                    <td>890<br />2 389</th>
+                </tr>
+                {% endfor %}
+            </body>
+        </table>
+    </div>
 
-    {{ include('metal_maiden/_delete_form.html.twig') }}
+    <div class="row">
+        {% for i in 1..10 %}
+        <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2">
+            <div class="metal-maiden card box-shadow mb-4 text-white border-0">
+                <div class="card-body">
+                    <h5 class="card-title small">Firepower</h5>
+                    <p class="card-text">890<br /><span>2 389</span></p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
 {% endblock %}

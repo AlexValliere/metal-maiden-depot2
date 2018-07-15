@@ -4,11 +4,16 @@ action:
   sign_in: Se connecter
 
 admin:
+  attire_category:
+    index:
+      main_title: Index des catégories d'ExoSuit
+    new:
+      main_title: Créer une nouvelle ExoSuit
   metal_maiden:
     index:
       main_title: Index des Metal Maidens
     new:
-      main_title: Crééer une Metal Maiden
+      main_title: Créer une Metal Maiden
 
 entities:
   armor: 'blindage|blindages'
@@ -22,6 +27,11 @@ entities:
 
 entity:
   attire_category:
+    attire_category:
+    abbreviation: abbréviation
+    name: nom
+    name_slug: nom slug
+
     atg: ATG
     anti-gun: Chasseur de char
     ht: HT
@@ -77,6 +87,9 @@ entity:
       sports: sports
 
 form:
+  attire_category:
+    abbreviation: Abbréviation
+    name: Nom
   metal_maiden:
     attire: ExoSuit
     attire_category: Catégorie d'ExoSuit
@@ -100,8 +113,9 @@ form:
 label:
   action: Actions
   back_to_list: Retour à la liste
-  create_new: Créer un nouveau
+  create_new: Créer
   created_at: Créé le
+  delete: Supprimer
   edit: Éditer
   id: 'ID|IDs'
   level: 'Niveau|Niveaux'

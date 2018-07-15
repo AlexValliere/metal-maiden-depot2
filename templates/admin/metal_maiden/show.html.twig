@@ -39,9 +39,11 @@
         </div>
     </div>
 
-    <a href="{{ path('admin_metal_maiden_index') }}">back to list</a>
+    <a href="{{ path('admin_metal_maiden_index') }}"><button class="btn">{{ 'label.back_to_list'|transchoice(0)|capitalize }}</button></a>
 
-    <a href="{{ path('admin_metal_maiden_edit', {'attireSlug': metal_maiden.attireSlug}) }}">edit</a>
+    <a href="{{ path('admin_metal_maiden_edit', {'attireSlug': metal_maiden.attireSlug}) }}"><button class="btn">{{ 'label.edit'|transchoice(0)|capitalize }}</button></a>
+
+    <br /><br />
 
     {{ include('admin/metal_maiden/_delete_form.html.twig') }}
 {% endblock %}

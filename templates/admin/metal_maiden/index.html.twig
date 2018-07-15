@@ -3,55 +3,55 @@
 {% block title %}MetalMaiden index{% endblock %}
 
 {% block body %}
-    <h1>{{ 'admin.metal_maiden.index.main_title'|trans }}</h1>
+	<h1>{{ 'admin.metal_maiden.index.main_title'|trans }}</h1>
 
-    <div class="mb-2">
-        <a href="{{ path('admin_metal_maiden_new') }}">
-            <button type="button" class="btn btn-dark">{{ 'label.create_new'|transchoice(0) }}</button>
-        </a>
-    </div>
+	<div class="mb-2">
+		<a href="{{ path('admin_metal_maiden_new') }}">
+			<button type="button" class="btn btn-dark">{{ 'label.create_new'|transchoice(0) }}</button>
+		</a>
+	</div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>{{ 'label.id'|transchoice(0) }}</th>
-                <th>{{ 'entity.metal_maiden.name'|transchoice(0)|capitalize }}</th>
-                <th>{{ 'entity.metal_maiden.attire'|transchoice(0)|capitalize }}</th>
-                <th>{{ 'entity.metal_maiden.attire'|transchoice(0)|capitalize }} slug</th>
-                <th>{{ 'entities.attire_category'|transchoice(0)|capitalize }}</th>
-                <th>{{ 'entities.nation'|transchoice(0)|capitalize }}</th>
-                <th>{{ 'entity.metal_maiden.has_portrait_image_file'|transchoice(0)|capitalize }}</th>
-                <!--<th>PortraitImageName</th>
-                <th>PortraitImageSize</th>-->
-                <th>{{ 'label.created_at'|transchoice(0)|capitalize }}</th>
-                <th>{{ 'label.updated_at'|transchoice(0)|capitalize }}</th>
-                <th>{{ 'label.action'|transchoice(2)|capitalize }}</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for metal_maiden in metal_maidens %}
-            <tr>
-                <td>{{ metal_maiden.id }}</td>
-                <td>{{ metal_maiden.name }}</td>
-                <td>{{ metal_maiden.attire }}</td>
-                <td>{{ metal_maiden.attireSlug }}</td>
-                <td>{% if metal_maiden.attireCategory %}{{ metal_maiden.attireCategory.abbreviation }} {% endif %}</td>
-                <td>{% if metal_maiden.nation %}{{ metal_maiden.nation.name }} {% endif %}</td>
-                <td>{{ metal_maiden.hasPortraitImageFile|boolean }}
-                <!--<td>{{ metal_maiden.portraitImageName }}</td>
-                <td>{{ metal_maiden.portraitImageSize }}</td>-->
-                <td>{{ metal_maiden.createdAt ? metal_maiden.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ metal_maiden.updatedAt ? metal_maiden.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('admin_metal_maiden_show', {'attireSlug': metal_maiden.attireSlug}) }}">{{ 'label.show'|transchoice(2) }}</a>
-                    <a href="{{ path('admin_metal_maiden_edit', {'attireSlug': metal_maiden.attireSlug}) }}">{{ 'label.edit'|transchoice(2) }}</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>{{ 'label.id'|transchoice(0) }}</th>
+				<th>{{ 'entity.metal_maiden.name'|transchoice(0)|capitalize }}</th>
+				<th>{{ 'entity.metal_maiden.attire'|transchoice(0)|capitalize }}</th>
+				<th>{{ 'entity.metal_maiden.attire'|transchoice(0)|capitalize }} slug</th>
+				<th>{{ 'entities.attire_category'|transchoice(0)|capitalize }}</th>
+				<th>{{ 'entities.nation'|transchoice(0)|capitalize }}</th>
+				<th>{{ 'entity.metal_maiden.has_portrait_image_file'|transchoice(0)|capitalize }}</th>
+				<!--<th>PortraitImageName</th>
+				<th>PortraitImageSize</th>-->
+				<th>{{ 'label.created_at'|transchoice(0)|capitalize }}</th>
+				<th>{{ 'label.updated_at'|transchoice(0)|capitalize }}</th>
+				<th>{{ 'label.action'|transchoice(2)|capitalize }}</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% for metal_maiden in metal_maidens %}
+			<tr>
+				<td>{{ metal_maiden.id }}</td>
+				<td>{{ metal_maiden.name }}</td>
+				<td>{{ metal_maiden.attire }}</td>
+				<td>{{ metal_maiden.attireSlug }}</td>
+				<td>{% if metal_maiden.attireCategory %}{{ metal_maiden.attireCategory.abbreviation }} {% endif %}</td>
+				<td>{% if metal_maiden.nation %}{{ metal_maiden.nation.name }} {% endif %}</td>
+				<td>{{ metal_maiden.hasPortraitImageFile|boolean }}
+				<!--<td>{{ metal_maiden.portraitImageName }}</td>
+				<td>{{ metal_maiden.portraitImageSize }}</td>-->
+				<td>{{ metal_maiden.createdAt ? metal_maiden.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+				<td>{{ metal_maiden.updatedAt ? metal_maiden.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+				<td>
+					<a href="{{ path('admin_metal_maiden_show', {'attireSlug': metal_maiden.attireSlug}) }}">{{ 'label.show'|transchoice(2) }}</a>
+					<a href="{{ path('admin_metal_maiden_edit', {'attireSlug': metal_maiden.attireSlug}) }}">{{ 'label.edit'|transchoice(2) }}</a>
+				</td>
+			</tr>
+		{% else %}
+			<tr>
+				<td colspan="4">no records found</td>
+			</tr>
+		{% endfor %}
+		</tbody>
+	</table>
 {% endblock %}

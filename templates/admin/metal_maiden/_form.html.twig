@@ -1,30 +1,30 @@
 {{ form_start(form) }}
 
-    <div class="form-group row align-items-end">
+	<div class="form-group row align-items-end">
 
-        {% if metal_maiden.attireSlug %}
+		{% if metal_maiden.attireSlug %}
 
-        	{% if metal_maiden.portraitImageName %}
-        		<label class="col-form-label col-sm-2 form-control-label" for="metal_maiden_portraitImageFile">
-        			<img src="{{ vich_uploader_asset(metal_maiden, 'portraitImageFile') }}" alt"{{ metal_maiden.attire }}'s portrait" />
-        			<br />
-        			Portrait image file
-        		</label>
-        	{% else %}
-        		<label class="col-form-label col-sm-2 form-control-label" for="metal_maiden_portraitImageFile">
-        			Portrait image file
-        		</label>
-        	{% endif %}
+			{% if metal_maiden.portraitImageName %}
+				<label class="col-form-label col-sm-2 form-control-label" for="metal_maiden_portraitImageFile">
+					<img src="{{ vich_uploader_asset(metal_maiden, 'portraitImageFile') }}" alt"{{ metal_maiden.attire }}'s portrait" />
+					<br />
+					Portrait image file
+				</label>
+			{% else %}
+				<label class="col-form-label col-sm-2 form-control-label" for="metal_maiden_portraitImageFile">
+					Portrait image file
+				</label>
+			{% endif %}
 
 
-            {# form_label(form.portraitImageFile) #}
-            <div class="col-sm-10">
-    	        {{ form_errors(form.portraitImageFile) }}
-    	        {{ form_widget(form.portraitImageFile) }}
-           	</div>
+			{# form_label(form.portraitImageFile) #}
+			<div class="col-sm-10">
+				{{ form_errors(form.portraitImageFile) }}
+				{{ form_widget(form.portraitImageFile) }}
+			</div>
 
-        {% endif %}
-    </div>
+		{% endif %}
+	</div>
 
 <!-- <div>
 		<div class="form-group row">
@@ -38,6 +38,6 @@
 		</div>
 	</div> -->
 
-    {{ form_widget(form) }}
-    <button class="btn">{{ 'label.save'|trans }}</button>
+	{{ form_widget(form) }}
+	<button class="btn">{{ 'label.save'|trans }}</button>
 {{ form_end(form) }}

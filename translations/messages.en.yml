@@ -4,6 +4,11 @@ action:
   sign_in: Sign in
 
 admin:
+  attire_category:
+    index:
+      main_title: Attire category index
+    new:
+      main_title: Create a new attire category
   metal_maiden:
     index:
       main_title: Metal Maidens index
@@ -22,6 +27,10 @@ entities:
 
 entity:
   attire_category:
+    abbreviation: abbreviation
+    name: name
+    name_slug: name slug
+    
     atg: ATG
     anti-gun: Anti-Gun
     ht: HT
@@ -91,6 +100,9 @@ entity:
     national_flag_11: Nation 11
 
 form:
+  attire_category:
+    abbreviation: Abbreviation
+    name: Name
   metal_maiden:
     attire: Attire
     attire_category: Attire category
@@ -102,6 +114,7 @@ label:
   back_to_list: Back to list
   create_new: Create new
   created_at: Created at
+  delete: Delete
   edit: Edit
   id: 'ID|IDs'
   level: 'Level|Levels'

@@ -3,11 +3,15 @@
 {% block title %}Edit MetalMaiden{% endblock %}
 
 {% block body %}
-    <h1>Edit MetalMaiden</h1>
+	<h1>Edit MetalMaiden</h1>
 
-    {{ include('admin/metal_maiden/_form.html.twig', {'button_label': 'Update'}) }}
+	{{ include('admin/metal_maiden/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('admin_metal_maiden_index') }}">back to list</a>
-
-    {{ include('admin/metal_maiden/_delete_form.html.twig') }}
+	<div class="d-inline-block mt-2">
+		<a href="{{ path('admin_metal_maiden_index') }}"><button class="btn d-inline-block">{{ 'label.back_to_list'|transchoice(0)|capitalize }}</button></a>
+	</div>
+	
+	<div class="d-inline-block">
+		{{ include('admin/metal_maiden/_delete_form.html.twig') }}
+	</div>
 {% endblock %}

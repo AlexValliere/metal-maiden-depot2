@@ -15,45 +15,51 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class MetalMaidenType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder
-            ->add('name')
-            ->add('attire')
-            ->add('attire_category', EntityType::class, array(
-                'class' => AttireCategory::class,
-                'choice_label' => 'name',
-                'multiple'     => false,
-            ))
-            ->add('portraitImageFile', FileType::class, array(
-                'required'    => false
-            ))
-            ->add('nation', EntityType::class, array(
-                'class' => Nation::class,
-                'choice_label' => 'name',
-                'multiple'     => false,
-                'empty_data'  => null,
-                'required' => false,
-            ))
-        ;
+	public function buildForm(FormBuilderInterface $builder, array $options)
+	{
+		$builder
+			->add('name', null, array(
+				'label_format' => 'form.metal_maiden.%name%',
+			))
+			->add('attire', null, array(
+				'label_format' => 'form.metal_maiden.%name%',
+			))
+			->add('attire_category', EntityType::class, array(
+				'class' => AttireCategory::class,
+				'choice_label' => 'name',
+				'label_format' => 'form.metal_maiden.%name%',
+				'multiple'     => false,
+			))
+			->add('portraitImageFile', FileType::class, array(
+				'required'    => false,
+			))
+			->add('nation', EntityType::class, array(
+				'class' => Nation::class,
+				'choice_label' => 'name',
+				'label_format' => 'form.metal_maiden.%name%',
+				'multiple'     => false,
+				'empty_data'  => null,
+				'required' => false,
+			))
+		;
 
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
-            $metalMaiden = $event->getData();
-            $form = $event->getForm();
+		$builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
+			$metalMaiden = $event->getData();
+			$form = $event->getForm();
 
-            // checks if the MetalMaiden object is "new"
-            // If no data is passed to the form, the data is "null".
-            // This should be considered a new "MetalMaiden"
-            if (!$metalMaiden || null === $metalMaiden->getId()) {
-                $form->remove('portraitImageFile'); // Prevent error with filename not yet existing
-            }
-        });
-    }
+			// checks if the MetalMaiden object is "new"
+			// If no data is passed to the form, the data is "null".
+			// This should be considered a new "MetalMaiden"
+			if (!$metalMaiden || null === $metalMaiden->getId()) {
+				$form->remove('portraitImageFile'); // Prevent error with filename not yet existing
+			}
+		});
+	}
 
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults([
-            'data_class' => MetalMaiden::class,
-        ]);
-    }
+	public function configureOptions(OptionsResolver $resolver)
+	{
+		$resolver->setDefaults([
+			'data_class' => MetalMaiden::class,
+		]);
+	}
 }

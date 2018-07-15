@@ -3,6 +3,13 @@ action:
   reset: Réinitialiser
   sign_in: Se connecter
 
+admin:
+  metal_maiden:
+    index:
+      main_title: Index des Metal Maidens
+    new:
+      main_title: Crééer une Metal Maiden
+
 entities:
   armor: 'blindage|blindages'
   attire_category: 'catégorie d''ExoSuit|catégories d''ExoSuit'
@@ -35,6 +42,9 @@ entity:
     name: nom
     profile: profil
     talent: 'talent|talents'
+
+    has_portrait_image_file: Possède un portrait
+
     attributes:
       base_value: valeur de base (niveau 0)
       growth_value: croissance (par niveau)
@@ -66,6 +76,13 @@ entity:
       performing: performance
       sports: sports
 
+form:
+  metal_maiden:
+    attire: ExoSuit
+    attire_category: Catégorie d'ExoSuit
+    name: Nom
+    nation: Nation
+
   nation:
     bavaria: Bavaria
     britannia: Britannia
@@ -81,17 +98,35 @@ entity:
     national_flag_11: Nation 11
 
 label:
+  action: Actions
+  back_to_list: Retour à la liste
+  create_new: Créer un nouveau
+  created_at: Créé le
+  edit: Éditer
   id: 'ID|IDs'
   level: 'Niveau|Niveaux'
   none: 'Aucun|Aucuns'
   password: 'Mot de passe|Mots de passe'
   result: 'Résultat|Résultats'
   save: 'Enregistrer'
+  show: Voir
   username: 'Nom d''utilisateur|Noms d''utilisateur'
+  updated_at: Mise à jour le
 
 metal_maiden:
   index:
     main_title: Trombinoscope
+
+menu:
+  attire_category: Catégories d'ExoSuit
+  armor: Blindages
+  chassis: Châssis
+  dashboard: Tableau de bord
+  logout: Se déconnecter
+  metal_maiden: Metal Maidens
+  nation: Nations
+  shell: Obus
+  user: Utilisateurs
 
 navbar:
   admin: Admin

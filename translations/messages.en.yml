@@ -3,6 +3,13 @@ action:
   reset: Reset
   sign_in: Sign in
 
+admin:
+  metal_maiden:
+    index:
+      main_title: Metal Maidens index
+    new:
+      main_title: Create a Metal Maiden
+
 entities:
   armor: 'armor|armors'
   attire_category: 'attire category|attire categories'
@@ -35,6 +42,9 @@ entity:
     name: name
     profile: profile
     talent: 'talent|talents'
+
+    has_portrait_image_file: Have a portrait
+
     attributes:
       base_value: base value (level 0)
       growth_value: growth (per level)
@@ -80,14 +90,39 @@ entity:
     national_flag_08: Nation 08
     national_flag_11: Nation 11
 
+form:
+  metal_maiden:
+    attire: Attire
+    attire_category: Attire category
+    name: Name
+    nation: Nation
+
 label:
+  action: Actions
+  back_to_list: Back to list
+  create_new: Create new
+  created_at: Created at
+  edit: Edit
   id: 'ID|IDs'
   level: 'Level|Levels'
   none: None
   password: 'Password|Passwords'
   result: 'Result|Results'
   save: Save
+  show: Show
   username: 'Username|Usernames'
+  updated_at: Updated at
+
+menu:
+  attire_category: Attire categories
+  armor: Armors
+  chassis: Chassis
+  dashboard: Dashboard
+  logout: Logout
+  metal_maiden: Metal Maidens
+  nation: Nations
+  shell: Shells
+  user: Users
 
 metal_maiden:
   index:

@@ -25,8 +25,8 @@
 			<tbody>
 			{% for attire_category in attire_categories %}
 				<tr>
-					<td>{{ attire_category.id }}</td>
-					<td>{{ attire_category.abbreviation }}</td>
+					<td><a href="{{ path('admin_attire_category_show', {'nameSlug': attire_category.nameSlug}) }}">{{ attire_category.id }}</a></td>
+					<td><a href="{{ path('admin_attire_category_show', {'nameSlug': attire_category.nameSlug}) }}">{{ attire_category.abbreviation }}</a></td>
 					<td>{{ attire_category.name }}</td>
 					<td>{{ attire_category.nameSlug }}</td>
 					<td>

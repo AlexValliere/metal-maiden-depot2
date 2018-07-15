@@ -1,5 +1,5 @@
 <form method="post" action="{{ path('admin_attire_category_delete', {'nameSlug': attire_category.nameSlug}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
 	<input type="hidden" name="_method" value="DELETE">
 	<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ attire_category.nameSlug) }}">
-	<button class="btn">{{ 'label.delete'|transchoice(0)|capitalize }}</button>
+	<button class="btn btn-danger">{{ 'label.delete'|transchoice(0)|capitalize }}</button>
 </form>

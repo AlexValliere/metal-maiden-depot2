@@ -1,30 +1,34 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/dashboard/base.html.twig' %}
 
 {% block title %}AttireCategory{% endblock %}
 
 {% block body %}
-    <h1>AttireCategory</h1>
+	<h1>AttireCategory</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ attire_category.id }}</td>
-            </tr>
-            <tr>
-                <th>Abbreviation</th>
-                <td>{{ attire_category.abbreviation }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ attire_category.name }}</td>
-            </tr>
-        </tbody>
-    </table>
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ attire_category.id }}</td>
+			</tr>
+			<tr>
+				<th>Abbreviation</th>
+				<td>{{ attire_category.abbreviation }}</td>
+			</tr>
+			<tr>
+				<th>Name</th>
+				<td>{{ attire_category.name }}</td>
+			</tr>
+		</tbody>
+	</table>
 
-    <a href="{{ path('admin_attire_category_index') }}">back to list</a>
+	<div class="d-inline-block mt-2">
+		<a href="{{ path('admin_attire_category_index') }}"><button class="btn d-inline-block">{{ 'label.back_to_list'|transchoice(0)|capitalize }}</button></a>
+	</div>
 
-    <a href="{{ path('admin_attire_category_edit', {'nameSlug': attire_category.nameSlug}) }}">edit</a>
+	<div class="d-inline-block mb-4">
+		<a href="{{ path('admin_attire_category_edit', {'nameSlug': attire_category.nameSlug}) }}"><button class="btn d-inline-block">{{ 'label.edit'|transchoice(0)|capitalize }}</button></a>
+	</div>
 
-    {{ include('admin/attire_category/_delete_form.html.twig') }}
+	{{ include('admin/attire_category/_delete_form.html.twig') }}
 {% endblock %}

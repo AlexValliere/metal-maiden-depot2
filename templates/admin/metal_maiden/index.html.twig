@@ -32,8 +32,8 @@
 			<tbody>
 			{% for metal_maiden in metal_maidens %}
 				<tr>
-					<td>{{ metal_maiden.id }}</td>
-					<td>{{ metal_maiden.name }}</td>
+					<td><a href="{{ path('admin_metal_maiden_show', {'attireSlug': metal_maiden.attireSlug}) }}">{{ metal_maiden.id }}</a></td>
+					<td><a href="{{ path('admin_metal_maiden_show', {'attireSlug': metal_maiden.attireSlug}) }}">{{ metal_maiden.name }}</a></td>
 					<td>{{ metal_maiden.attire }}</td>
 					<td>{{ metal_maiden.attireSlug }}</td>
 					<td>{% if metal_maiden.attireCategory %}{{ metal_maiden.attireCategory.abbreviation }} {% endif %}</td>

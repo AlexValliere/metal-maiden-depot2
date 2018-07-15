@@ -1,169 +1,181 @@
 /* Navbar style
 -------------------------------------------------- */
 .navbar-right .dropdown-menu.locales {
-  right: 0;
-  left: auto;
-  background-color: #dedede;
-  color: #ffffff;
+	right: 0;
+	left: auto;
+	background-color: #dedede;
+	color: #ffffff;
 }
 
 /* Navscroller style
 -------------------------------------------------- */
 html {
-  overflow-x: hidden; /* Prevent scroll on narrow devices */
+	overflow-x: hidden; /* Prevent scroll on narrow devices */
 }
 
 @media (max-width: 991.98px) {
-  .offcanvas-collapse {
-    position: fixed;
-    top: 56px; /* Height of navbar */
-    bottom: 0;
-    left: 100%;
-    width: 100%;
-    padding-right: 1rem;
-    padding-left: 1rem;
-    overflow-y: auto;
-    visibility: hidden;
-    background-color: #343a40;
-    transition-timing-function: ease-in-out;
-    transition-duration: .3s;
-    transition-property: left, visibility;
-  }
-  .offcanvas-collapse.open {
-    left: 0;
-    visibility: visible;
-  }
+	.offcanvas-collapse {
+		position: fixed;
+		top: 56px; /* Height of navbar */
+		bottom: 0;
+		left: 100%;
+		width: 100%;
+		padding-right: 1rem;
+		padding-left: 1rem;
+		overflow-y: auto;
+		visibility: hidden;
+		background-color: #343a40;
+		transition-timing-function: ease-in-out;
+		transition-duration: .3s;
+		transition-property: left, visibility;
+	}
+	.offcanvas-collapse.open {
+		left: 0;
+		visibility: visible;
+	}
 }
 
 .nav-scroller {
-  position: relative;
-  z-index: 2;
-  height: 2.75rem;
-  overflow-y: hidden;
+/* 	position: relative; */
+	z-index: 2;
+	height: 2.75rem;
+	overflow-y: hidden;
+    position: fixed;
+    top: 55px;
+    right: 0;
+    left: 0;
+    background-color: #252830;
 }
 
 .nav-scroller .nav {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: nowrap;
-  flex-wrap: nowrap;
-  padding-bottom: 1rem;
-  margin-top: -1px;
-  overflow-x: auto;
-  color: rgba(255, 255, 255, .75);
-  text-align: center;
-  white-space: nowrap;
-  -webkit-overflow-scrolling: touch;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: nowrap;
+	flex-wrap: nowrap;
+	padding-bottom: 1rem;
+	margin-top: -1px;
+	overflow-x: auto;
+	color: rgba(255, 255, 255, .75);
+	text-align: center;
+	white-space: nowrap;
+	-webkit-overflow-scrolling: touch;
 }
 
 .nav-underline .nav-link {
-  padding-top: .75rem;
-  padding-bottom: .75rem;
-  font-size: .875rem;
-  color: #6c757d;
+	padding-top: .75rem;
+	padding-bottom: .75rem;
+	font-size: .875rem;
+	color: #6c757d;
 }
 
 .nav-underline .nav-link:hover {
-  color: #007bff;
+	color: #007bff;
 }
 
 .nav-underline .active {
-  font-weight: 500;
-  color: #ffffff;
+	font-weight: 500;
+	color: #ffffff;
 }
 
 /* Sticky footer style
 -------------------------------------------------- */
 html {
-  position: relative;
-  min-height: 100%;
-  padding-top: 3.5rem;
+	position: relative;
+	min-height: 100%;
+	padding-top: 7rem;
 }
+
 body {
-  margin-bottom: 60px; /* Margin bottom by footer height */
+	margin-bottom: 60px; /* Margin bottom by footer height */
 }
+
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 60px; /* Set the fixed height of the footer here */
-  line-height: 60px; /* Vertically center the text there */
-  background-color: #343a40;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 60px; /* Set the fixed height of the footer here */
+	line-height: 60px; /* Vertically center the text there */
+	background-color: #343a40;
 }
 
 /* Custom page CSS
 -------------------------------------------------- */
 
 a {
-  color: #00d4d4;
+	color: #00d4d4;
 }
 
 a:hover {
-  color: hsla(180, 100%, 45%, 1);
-  text-decoration: none;
+	color: hsla(180, 100%, 45%, 1);
+	text-decoration: none;
 }
 
 body {
-  background-color: #252830;
-  color: #ffffff;
+	background-color: #252830;
+	color: #ffffff;
 }
 
 code {
-  font-size: 80%;
+	font-size: 80%;
 }
 
 hr {
-  border-color: #9E9E9E;
+	border-color: #9E9E9E;
+}
+
+.table-borderless td,
+.table-borderless th {
+		border: 0;
 }
 
 .box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .4); }
 .text-muted { color: #919191 !important; }
-.table-hover tbody tr:hover {
-    background-color: rgba(3, 169, 244, 0.7) !important;
-}
+/* .table-hover tbody tr:hover {
+		background-color: rgba(3, 169, 244, 0.7) !important;
+} */
 
 img.metal-maiden-portrait-image { border-radius: 1rem!important; }
 div.metal-maiden-portrait-wrapper { position: relative; }
 
 p img.metal-maiden-attire-category {
-  height: 2em;
+	height: 2em;
 }
 
 div.metal-maiden-portrait-wrapper img.metal-maiden-rarity {
-  position: absolute;
-  bottom: 2px;
-  left: 2px;
-  height: 2rem;
+	position: absolute;
+	bottom: 2px;
+	left: 2px;
+	height: 2rem;
 }
 
 div.metal-maiden.card {
-  background-color: #333742;
+	background-color: #333742;
 }
 
 div.metal-maiden.card:hover {
-  /* background-color: rgba(210, 180, 140, 0.12) !important; */
-  background-color: rgba(70, 143, 255, 0.3) !important;
+	/* background-color: rgba(210, 180, 140, 0.12) !important; */
+	background-color: rgba(70, 143, 255, 0.3) !important;
 }
 
 div.metal-maiden.card:hover .text-muted {
-  color: #cccccc !important;
+	color: #cccccc !important;
 }
 
 div.card,div.card:hover, div.card .text-muted, div.card:hover .text-muted {
-  -webkit-transition: 500ms; /* Safari */
-  transition: 500ms;
+	-webkit-transition: 500ms; /* Safari */
+	transition: 500ms;
 }
 
 img.metal-maidens-filter {
-  opacity: 0.5;
-  filter: alpha(opacity=50); /* For IE8 and earlier */
+	opacity: 0.5;
+	filter: alpha(opacity=50); /* For IE8 and earlier */
 }
 
 img.metal-maidens-filter.active {
-  opacity: 1;
-  filter: alpha(opacity=1); /* For IE8 and earlier */
+	opacity: 1;
+	filter: alpha(opacity=1); /* For IE8 and earlier */
 }
 
 img.metal-maidens-filter.attire-category-icon {
-  height: 3em;
+	height: 3em;
 }

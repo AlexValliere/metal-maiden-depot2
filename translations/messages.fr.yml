@@ -1,10 +1,97 @@
 action:
   logout: Se déconnecter
+  reset: Réinitialiser
   sign_in: Se connecter
 
+entities:
+  armor: 'blindage|blindages'
+  attire_category: 'catégorie d''ExoSuit|catégories d''ExoSuit'
+  chassis: 'chassis'
+  dialogue: 'dialogue|dialogues'
+  engine: 'moteur|moteurs'
+  metal_maiden: 'metal maiden|metal maidens'
+  nation: 'nation|nations'
+  shell: 'obus'
+
+entity:
+  attire_category:
+    atg: ATG
+    anti-gun: Chasseur de char
+    ht: HT
+    heavy-tank: Char lourd
+    lav: VBL
+    light-armored-vehicle:  Véhicule blindé léger
+    lt: LT
+    light-tank: Char léger
+    mt: MT
+    medium-tank: Char moyen
+    spg: SPG
+    self-propelled-gun: Canon automoteur
+
+  metal_maiden:
+    attire: ExoSuit
+    attribute: 'attribut|attributs'
+    illustration: 'illustration|illustrations'
+    name: nom
+    profile: profil
+    talent: 'talent|talents'
+    attributes:
+      base_value: valeur de base (niveau 0)
+      growth_value: croissance (par niveau)
+      level60_value: valeur (niveau 60)
+      armor: armure
+      detection: détection
+      durability: durabilité
+      evasion: évasion
+      firepower: puissance
+      penetration: pénétration
+      stealth: furtivité
+      targeting: précision
+      fire_resistance: résistance au feu
+      critical_resistance: résistance critique
+      critical_defense: défense critique
+    slots:
+      turret: tourelle
+      mod: mod
+      internal: interne
+      external: externe
+      cabin: cabine
+      carriage: affût
+      special: spécial
+    talents:
+      artistry: art
+      cooking: cuisine
+      crafting: mécanique
+      nursing: soins
+      performing: performance
+      sports: sports
+
+  nation:
+    bavaria: Bavaria
+    britannia: Britannia
+    china: China
+    freedonia: Freedonia
+    fusang: Fusang
+    gallia: Gallia
+    rossiya: Rossiya
+    stardust_farer: Stardust Farer
+    stivalia: Stivalia
+    sweden: Sweden
+    national_flag_08: Nation 08
+    national_flag_11: Nation 11
+
 label:
-  username: Nom d'utilisateur
-  password: Mot de passe
+  id: 'ID|IDs'
+  level: 'Niveau|Niveaux'
+  none: 'Aucun|Aucuns'
+  password: 'Mot de passe|Mots de passe'
+  result: 'Résultat|Résultats'
+  save: 'Enregistrer'
+  username: 'Nom d''utilisateur|Noms d''utilisateur'
+
+metal_maiden:
+  index:
+    main_title: Trombinoscope
 
 navbar:
   admin: Admin
@@ -14,6 +101,9 @@ navbar:
   others: Autres
   search: Rechercher
   terrains: Terrains
+
+nav_scroller:
+  account: Profil
 
 security:
   title:

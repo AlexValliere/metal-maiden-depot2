@@ -3,9 +3,9 @@
 {% block title %}New MetalMaiden{% endblock %}
 
 {% block body %}
-    <h1>Create new MetalMaiden</h1>
+    <h1>{{ 'admin.metal_maiden.new.main_title'|trans }}</h1>
 
     {{ include('admin/metal_maiden/_form.html.twig') }}
 
-    <a href="{{ path('admin_metal_maiden_index') }}">back to list</a>
+    <a href="{{ path('admin_metal_maiden_index') }}">{{ 'label.back_to_list'|trans }}</a>
 {% endblock %}

@@ -14,11 +14,11 @@
                     <fieldset>
                         <legend><i class="fa fa-lock" aria-hidden="true"></i> {{ 'security.title.login'|trans }}</legend>
                         <div class="form-group">
-                            <label for="username">{{ 'label.username'|trans }}</label>
+                            <label for="username">{{ 'label.username'|transchoice(0) }}</label>
                             <input type="text" id="username" name="_username" value="{{ last_username }}" class="form-control"/>
                         </div>
                         <div class="form-group">
-                            <label for="password">{{ 'label.password'|trans }}</label>
+                            <label for="password">{{ 'label.password'|transchoice(0) }}</label>
                             <input type="password" id="password" name="_password" class="form-control" />
                         </div>
                         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>

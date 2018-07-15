@@ -4,9 +4,9 @@
 
 {% block body %}
 
-<h1>Metal Maiden list</h1>
+<h1>{{ 'metal_maiden.index.main_title'|trans }}</h1>
 <p class="text-muted">
-    Results: {{ metal_maidens|length }}
+    {{ 'label.result'|transchoice( metal_maidens|length ) }} : {{ metal_maidens|length }}
 </p>
 
 {{ include('metal_maiden/_index_navbar.html.twig') }}

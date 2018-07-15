@@ -1,62 +1,628 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}MetalMaiden{% endblock %}
+{% block title %}Metal Maiden Depot 2{% endblock %}
 
 {% block body %}
 
-    <h1 class="font-weight-normal mb-4">{{ metal_maiden.attire }} <small class="text-muted">{{ metal_maiden.name }}</small></h1>
+	<h1 class="font-weight-normal mb-4">{{ metal_maiden.attire }} <small class="text-muted">{{ metal_maiden.name }}</small></h1>
 
-    <hr />
+	<hr />
 
-    <div class="media mb-4">
-        <img class="align-self-start mr-3" src="{{ vich_uploader_asset(metal_maiden, 'portraitImageFile') }}" alt="{{ metal_maiden.attire }}'s portrait">
-        <div class="media-body">
-            <h5 class="mt-0">{{ metal_maiden.attire }} <small class="d-inline-block">{% for i in 1 .. metal_maiden.rarity %}<i class="fa fa-star text-warning"></i>{% endfor %}</small></h5>
-            <h6 class="mt-0">{{ metal_maiden.name }}</h6>
-            <p>
-                {% if metal_maiden.attireCategory %}{{ metal_maiden.attireCategory.name }}{% endif %}
-                <br />
-                {% if metal_maiden.nation %}{{ metal_maiden.nation.name }}{% endif %}
-                <br />
-                <img src="http://www.metalmaidendepot.ovh/assets/images/tanks/equipments/slots/turret.png" alt="turret slot" style="height: 1.5em;">
-                <img src="http://www.metalmaidendepot.ovh/assets/images/tanks/equipments/slots/mod.png" alt="mod slot" style="height: 1.5em;">
-                <img src="http://www.metalmaidendepot.ovh/assets/images/tanks/equipments/slots/internal.png" alt="internal slot" style="height: 1.5em;">
-                <img src="http://www.metalmaidendepot.ovh/assets/images/tanks/equipments/slots/internal.png" alt="internal slot" style="height: 1.5em;">
-                <img src="http://www.metalmaidendepot.ovh/assets/images/tanks/equipments/slots/carriage.png" alt="carriage slot" style="height: 1.5em;">
-                <img src="http://www.metalmaidendepot.ovh/assets/images/tanks/equipments/slots/special.png" alt="special slot" style="height: 1.5em;">
-            </p>
-        </div>
-    </div>
+	<div class="media mb-4">
+		<img class="align-self-start mr-3" src="{{ vich_uploader_asset(metal_maiden, 'portraitImageFile') }}" alt="{{ metal_maiden.attire }}'s portrait">
+		<div class="media-body">
+			<h5 class="mt-0">{{ metal_maiden.attire }} <small class="d-inline-block">{% for i in 1 .. metal_maiden.rarity %}<i class="fa fa-star text-warning"></i>{% endfor %}</small></h5>
+			<h6 class="mt-0">{{ metal_maiden.name }}</h6>
+			<p>
+				{% if metal_maiden.attireCategory %}{{ ('entity.attire_category.' ~ metal_maiden.attireCategory.nameSlug)|trans }}{% endif %}
+				<br />
+				{% if metal_maiden.nation %}{{ ('entity.nation.' ~ metal_maiden.nation.nameSlug)|trans }}{% endif %}
+				<br />
+				<img src="http://www.metalmaidendepot.ovh/assets/images/tanks/equipments/slots/turret.png" alt="turret slot" style="height: 1.5em;">
+				<img src="http://www.metalmaidendepot.ovh/assets/images/tanks/equipments/slots/mod.png" alt="mod slot" style="height: 1.5em;">
+				<img src="http://www.metalmaidendepot.ovh/assets/images/tanks/equipments/slots/internal.png" alt="internal slot" style="height: 1.5em;">
+				<img src="http://www.metalmaidendepot.ovh/assets/images/tanks/equipments/slots/internal.png" alt="internal slot" style="height: 1.5em;">
+				<img src="http://www.metalmaidendepot.ovh/assets/images/tanks/equipments/slots/carriage.png" alt="carriage slot" style="height: 1.5em;">
+				<img src="http://www.metalmaidendepot.ovh/assets/images/tanks/equipments/slots/special.png" alt="special slot" style="height: 1.5em;">
+			</p>
+		</div>
+	</div>
 
-    <h6>Profile:</h6>
-    <p>Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+	<h4>{{ 'entity.metal_maiden.profile'|trans|capitalize }} :</h4>
+	<!-- <p>{{ 'label.none'|transchoice(0) }}</p> -->
+	<p>
+Age: 22<br />
+Birthday: 5th June<br />
+Affiliation: S.V.S.<br />
+Blood Type: O<br />
+Height: 169cm<br />
+Occupation: Royal Princess-in-exile / Rossiyan Reconnaissance Squad<br />
+<br />
+Anastasia Alexandrovna was never seen as an individual who has a royal family background. Her family had been residing in Kolyma ever since they escaped from the Bolsheviks decades ago with the help of sacrificial doppelgangers. When the beast tank outbreak happened in nearby Yakutsk, she was first to volunteer to help, out of her family's dismay. Frustrated by her own parent's cowardice, Anastasia disowned herself from the royal family, and fled to Yakutsk, joining in the defense in the heat of battle.<br />
+<br />
+It was only then instructor Sophia took notice of Anastasia's resilience, and had her enroll into the Rossiyan metal maiden program. While Communist politicians and leaders alike are furious that the royal family had indeed survived the wrath of the Bolsheviks, Anastasia's growing interest and loyalty with the regime had allowed her to join without any resistance. While stubborn to the point where other metal maidens have to humble her, Anastasia's undying loyalty for the nation comes across as a motivational figure where she dares to lead despite lacking in tactical expertise.<br />
+<br />
+Despite her initial background, she enjoys the company of the common folk, especially metal maidens who come from such background. As a result, her popularity as a people's royal figure began to take shape, even though Anastasia herself is unaware of this. However, her relations with metal maidens from Bavaria and Fusou are a little uneasy, considering the initial plans of invading Rossiya before the beast tank outbreak. But one stands out from the rest. Tessa Nieminen, who is stationed on the Mannerheim Defense Line. Somehow she's able to sneak in and play pranks on Anastasia without being detected. Considering that Anastasia is stationed in Leningrad, how does Tessa do this remains a mystery...<br />
+	</p>
 
-    <div class="table-responsive">
-        <table class="table table-sm table-hover table-borderless">
-            <body>
-                {% for i in 1..4 %}
-                <tr>
-                    <th scope="row">Firepower</th>
-                    <td>890<br />2 389</th>
-                    <th scope="row">Firepower</th>
-                    <td>890<br />2 389</th>
-                </tr>
-                {% endfor %}
-            </body>
-        </table>
-    </div>
+	<br />
+	
+	<h4>{{ 'entity.metal_maiden.attribute'|transchoice(2)|capitalize }} :</h4>
+	<p>
+		{{ 'entity.metal_maiden.attributes.base_value'|trans|capitalize }} (<span class="text-warning">{{ 'entity.metal_maiden.attributes.growth_value'|trans|capitalize }}</span>)
+		<br />
+		<span class="text-info">{{ 'entity.metal_maiden.attributes.level60_value'|trans|capitalize }}</span>
+	</p>
 
-    <div class="row">
-        {% for i in 1..10 %}
-        <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2">
-            <div class="metal-maiden card box-shadow mb-4 text-white border-0">
-                <div class="card-body">
-                    <h5 class="card-title small">Firepower</h5>
-                    <p class="card-text">890<br /><span>2 389</span></p>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
-    </div>
+	<div class="row">
+		<div class="col-6 col-sm-4 col-md-3">
+			<div class="metal-maiden card box-shadow mb-4 text-white border-0">
+				<div class="card-body">
+					<h6 class="card-title">{{ 'entity.metal_maiden.attributes.firepower'|trans|capitalize }}</h6>
+					<p class="card-text">
+						865 (<span class="text-warning">+25,40</span>)
+						<br />
+						<span class="text-info">2 389</span>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-6 col-sm-4 col-md-3">
+			<div class="metal-maiden card box-shadow mb-4 text-white border-0">
+				<div class="card-body">
+					<h6 class="card-title">{{ 'entity.metal_maiden.attributes.penetration'|trans|capitalize }}</h6>
+					<p class="card-text">
+						355 (<span class="text-warning">+11,80</span>)
+						<br />
+						<span class="text-info">1 063</span>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-6 col-sm-4 col-md-3">
+			<div class="metal-maiden card box-shadow mb-4 text-white border-0">
+				<div class="card-body">
+					<h6 class="card-title">{{ 'entity.metal_maiden.attributes.durability'|trans|capitalize }}</h6>
+					<p class="card-text">
+						1 000 (<span class="text-warning">+26,60</span>)
+						<br />
+						<span class="text-info">2 596</span>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-6 col-sm-4 col-md-3">
+			<div class="metal-maiden card box-shadow mb-4 text-white border-0">
+				<div class="card-body">
+					<h6 class="card-title">{{ 'entity.metal_maiden.attributes.armor'|trans|capitalize }}</h6>
+					<p class="card-text">
+						310 (<span class="text-warning">+8,69</span>)
+						<br />
+						<span class="text-info">831,40</span>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-6 col-sm-4 col-md-3">
+			<div class="metal-maiden card box-shadow mb-4 text-white border-0">
+				<div class="card-body">
+					<h6 class="card-title">{{ 'entity.metal_maiden.attributes.targeting'|trans|capitalize }}</h6>
+					<p class="card-text">
+						85 (<span class="text-warning">+0</span>)
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-6 col-sm-4 col-md-3">
+			<div class="metal-maiden card box-shadow mb-4 text-white border-0">
+				<div class="card-body">
+					<h6 class="card-title">{{ 'entity.metal_maiden.attributes.evasion'|trans|capitalize }}</h6>
+					<p class="card-text">
+						40 (<span class="text-warning">+0</span>)
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-6 col-sm-4 col-md-3">
+			<div class="metal-maiden card box-shadow mb-4 text-white border-0">
+				<div class="card-body">
+					<h6 class="card-title">{{ 'entity.metal_maiden.attributes.stealth'|trans|capitalize }}</h6>
+					<p class="card-text">
+						50 (<span class="text-warning">+0</span>)
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-6 col-sm-4 col-md-3">
+			<div class="metal-maiden card box-shadow mb-4 text-white border-0">
+				<div class="card-body">
+					<h6 class="card-title">{{ 'entity.metal_maiden.attributes.detection'|trans|capitalize }}</h6>
+					<p class="card-text">
+						65 (<span class="text-warning">+0</span>)
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-6 col-sm-4 col-md-3">
+			<div class="metal-maiden card box-shadow mb-4 text-white border-0">
+				<div class="card-body">
+					<h6 class="card-title">{{ 'entity.metal_maiden.attributes.fire_resistance'|trans|capitalize }}</h6>
+					<p class="card-text">
+						C : 85 (<span class="text-warning">+0</span>)
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-6 col-sm-4 col-md-3">
+			<div class="metal-maiden card box-shadow mb-4 text-white border-0">
+				<div class="card-body">
+					<h6 class="card-title">{{ 'entity.metal_maiden.attributes.critical_resistance'|trans|capitalize }}</h6>
+					<p class="card-text">
+						B : 40 (<span class="text-warning">+0</span>)
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-6 col-sm-4 col-md-3">
+			<div class="metal-maiden card box-shadow mb-4 text-white border-0">
+				<div class="card-body">
+					<h6 class="card-title">{{ 'entity.metal_maiden.attributes.critical_defense'|trans|capitalize }}</h6>
+					<p class="card-text">
+						B : 50 (<span class="text-warning">+0</span>)
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
 
+	<br />
+
+	<h4>{{ 'entity.metal_maiden.talent'|transchoice(2)|capitalize }} :</h4>
+	<div class="table-responsive">
+		<table class="table table-bordered table-dark table-hover table-sm">
+			<thead>
+				<tr>
+					<th scope="col">{{ 'entity.metal_maiden.talent'|transchoice(0)|capitalize }}</th>
+					<th scope="col">{{ 'label.level'|transchoice(0)|capitalize }}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>{{ 'entity.metal_maiden.talents.nursing'|trans|capitalize }}</td>
+					<td>2</td>
+				</tr>
+				<tr>
+					<td>{{ 'entity.metal_maiden.talents.artistry'|trans|capitalize }}</td>
+					<td>2</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<br />
+
+	<h4>{{ 'entities.engine'|transchoice(2)|capitalize }} :</h4>
+	<div class="row">
+		<div class="col-12 col-sm-6 col-md-4">
+			<div class="metal-maiden card box-shadow mb-4 text-white border-0">
+				<div class="card-body">
+					<h5 class="card-title">CP HT Engine<br />
+						<img
+							src="http://www.metalmaidendepot.ovh/assets/images/engines/properties/c_proof.png"
+							alt="{{ 'cold_proof'|trans }}"
+							style="height: 1.5rem;"
+						/>
+						<img
+							src="http://www.metalmaidendepot.ovh/assets/images/engines/properties/s_proof.png"
+							alt="{{ 'step_proof'|trans }}"
+							style="height: 1.5rem;"
+						/>
+						<small><i class="fa fa-star text-warning"></i></small>
+					</h5>
+					<p class="card-text">
+						{{ 'entity.metal_maiden.attributes.durability'|trans|capitalize }} :<br />
+						520<br />
+						{{ 'entity.metal_maiden.attributes.evasion'|trans|capitalize }} :<br />
+						40
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-12 col-sm-6 col-md-4">
+			<div class="metal-maiden card box-shadow mb-4 text-white border-0">
+				<div class="card-body">
+					<h5 class="card-title">
+						CP HT Engine II<br />
+						<img
+							src="http://www.metalmaidendepot.ovh/assets/images/engines/properties/c_proof.png"
+							alt="{{ 'cold_proof'|trans }}"
+							style="height: 1.5rem;"
+						/>
+						<img
+							src="http://www.metalmaidendepot.ovh/assets/images/engines/properties/s_proof.png"
+							alt="{{ 'step_proof'|trans }}"
+							style="height: 1.5rem;"
+						/>
+						<small><i class="fa fa-star text-warning"></i><i class="fa fa-star text-warning"></i></small>
+					</h5>
+					<p class="card-text">
+						{{ 'entity.metal_maiden.attributes.durability'|trans|capitalize }} :<br />
+						1 180<br />
+						{{ 'entity.metal_maiden.attributes.evasion'|trans|capitalize }} :<br />
+						75
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-12 col-sm-6 col-md-4">
+			<div class="metal-maiden card box-shadow mb-4 text-white border-0">
+				<div class="card-body">
+					<h5 class="card-title">
+						CP HT Engine III<br />
+						<img
+							src="http://www.metalmaidendepot.ovh/assets/images/engines/properties/c_proof.png"
+							alt="{{ 'cold_proof'|trans }}"
+							style="height: 1.5rem;"
+						/>
+						<img
+							src="http://www.metalmaidendepot.ovh/assets/images/engines/properties/s_proof.png"
+							alt="{{ 'step_proof'|trans }}"
+							style="height: 1.5rem;"
+						/>
+						<small><i class="fa fa-star text-warning"></i><i class="fa fa-star text-warning"></i><i class="fa fa-star text-warning"></i></small>
+					</h5>
+					<p class="card-text">
+						{{ 'entity.metal_maiden.attributes.durability'|trans|capitalize }} :<br />
+						1 840<br />
+						{{ 'entity.metal_maiden.attributes.evasion'|trans|capitalize }} :<br />
+						115
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="media">
+		<img class="mr-3" src="http://www.metalmaidendepot.ovh/assets/images/engines/properties/c_proof.png" alt="Generic placeholder image">
+		<div class="media-body">
+			<h6 class="p-0 m-0">C Proof</h6> Immune to Cold effect from Snow terrain : Troughout the battle, Damage received is increased
+		</div>
+	</div>
+	<br />
+	<div class="media">
+		<img class="mr-3" src="http://www.metalmaidendepot.ovh/assets/images/engines/properties/s_proof.png" alt="Generic placeholder image">
+		<div class="media-body">
+			<h6 class="p-0 m-0">S Proof</h6> Immune to Steep effect from Hills terrain : Starting from contact stage, Evasion is drastically reduced
+		</div>
+	</div>
+
+	<br />
+
+	<h4>{{ 'entities.chassis'|transchoice(2)|capitalize }} :</h4>
+	<div class="row">
+		<div class="col-12 col-sm-6 col-md-4">
+			<div class="metal-maiden card box-shadow mb-4 text-white border-0">
+				<div class="card-body">
+					<h5 class="card-title">
+						Infantry Chassis<br />
+						<img
+							src="http://www.metalmaidendepot.ovh/assets/images/chassis/properties/angled.png"
+							alt="{{ 'angled'|trans }}"
+							style="height: 1.5rem;"
+						/>
+						<img
+							src="http://www.metalmaidendepot.ovh/assets/images/chassis/properties/treads.png"
+							alt="{{ 'treads'|trans }}"
+							style="height: 1.5rem;"
+						/>
+						<small><i class="fa fa-star text-warning"></i></small>
+					</h5>
+					<p class="card-text">
+						{{ 'entity.metal_maiden.attributes.durability'|trans|capitalize }} :<br />
+						200<br />
+						{{ 'entity.metal_maiden.attributes.firepower'|trans|capitalize }} :<br />
+						100<br />
+						{{ 'entity.metal_maiden.attributes.targeting'|trans|capitalize }} :<br />
+						25<br />
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-12 col-sm-6 col-md-4">
+			<div class="metal-maiden card box-shadow mb-4 text-white border-0">
+				<div class="card-body">
+					<h5 class="card-title">
+						Infantry Chassis II<br />
+						<img
+							src="http://www.metalmaidendepot.ovh/assets/images/chassis/properties/angled.png"
+							alt="{{ 'angled'|trans }}"
+							style="height: 1.5rem;"
+						/>
+						<img
+							src="http://www.metalmaidendepot.ovh/assets/images/chassis/properties/treads.png"
+							alt="{{ 'treads'|trans }}"
+							style="height: 1.5rem;"
+						/>
+						<small><i class="fa fa-star text-warning"></i><i class="fa fa-star text-warning"></i></small>
+					</h5>
+					<p class="card-text">
+						{{ 'entity.metal_maiden.attributes.durability'|trans|capitalize }} :<br />
+						965<br />
+						{{ 'entity.metal_maiden.attributes.firepower'|trans|capitalize }} :<br />
+						300<br />
+						{{ 'entity.metal_maiden.attributes.targeting'|trans|capitalize }} :<br />
+						65<br />
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-12 col-sm-6 col-md-4">
+			<div class="metal-maiden card box-shadow mb-4 text-white border-0">
+				<div class="card-body">
+					<h5 class="card-title">
+						Infantry Chassis III<br />
+						<img
+							src="http://www.metalmaidendepot.ovh/assets/images/chassis/properties/angled.png"
+							alt="{{ 'angled'|trans }}"
+							style="height: 1.5rem;"
+						/>
+						<img
+							src="http://www.metalmaidendepot.ovh/assets/images/chassis/properties/treads.png"
+							alt="{{ 'treads'|trans }}"
+							style="height: 1.5rem;"
+						/>
+						<small><i class="fa fa-star text-warning"></i><i class="fa fa-star text-warning"></i><i class="fa fa-star text-warning"></i></small>
+					</h5>
+					<p class="card-text">
+						{{ 'entity.metal_maiden.attributes.durability'|trans|capitalize }} :<br />
+						1 295<br />
+						{{ 'entity.metal_maiden.attributes.firepower'|trans|capitalize }} :<br />
+						520<br />
+						{{ 'entity.metal_maiden.attributes.targeting'|trans|capitalize }} :<br />
+						110<br />
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="media">
+		<img class="mr-3" src="http://www.metalmaidendepot.ovh/assets/images/chassis/properties/angled.png" alt="Generic placeholder image">
+		<div class="media-body">
+			<h6 class="p-0 m-0">Angled</h6> Immune to Broad effect from Plains terrain : During Shelling stage, Firepower is drastically reduced
+		</div>
+	</div>
+	<br />
+	<div class="media">
+		<img class="mr-3" src="http://www.metalmaidendepot.ovh/assets/images/chassis/properties/treads.png" alt="Generic placeholder image">
+		<div class="media-body">
+			<h6 class="p-0 m-0">Treads</h6> Immune to Snowy effect from Snow terrain : Troughout the battle, Evasion is reduced
+		</div>
+	</div>
+
+	<br />
+
+	<h4>{{ 'entities.armor'|transchoice(2)|capitalize }} :</h4>
+	<div class="d-lg-none">
+		<div class="row">
+			{% for i in 1..14 %}
+				<div class="col-12 col-sm-6 col-md-4">
+					<div class="metal-maiden card box-shadow mb-4 text-white border-0">
+						<div class="card-body">
+							<h5 class="card-title">
+								Light Rolled Riveted Armor<br />
+								<img
+									src="http://www.metalmaidendepot.ovh/assets/images/armors/properties/riveted.png"
+									alt="{{ 'angled'|trans }}"
+									style="height: 1.5rem;"
+								/>
+								<small><i class="fa fa-star text-warning"></i></small>
+							</h5>
+							<p class="card-text">
+								<img
+									src="http://www.metalmaidendepot.ovh/assets/images/tanks/attributes/armor.png"
+									alt=""
+									style="height: 1.5rem;"
+									/
+								>
+								200
+								<img
+									src="http://www.metalmaidendepot.ovh/assets/images/tanks/attributes/evasion.png"
+									alt=""
+									style="height: 1.5rem;"
+									/
+								>
+								100<br />
+							</p>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+	<div class="d-none d-lg-block">
+		<div class="table-responsive">
+			<table class="table table-bordered table-dark table-hover">
+				<thead>
+					<tr>
+						<th scope="col">Name</th>
+						<th scope="col">Tier</th>
+						<th scope="col">Level</th>
+						<th scope="col">{{ 'entity.metal_maiden.attributes.armor'|trans|capitalize }}</th>
+						<th scope="col">{{ 'entity.metal_maiden.attributes.durability'|trans|capitalize }}</th>
+						<th scope="col">{{ 'entity.metal_maiden.attributes.evasion'|trans|capitalize }}</th>
+						<th scope="col">{{ 'entity.metal_maiden.attributes.stealth'|trans|capitalize }}</th>
+						<th scope="col">{{ 'entity.metal_maiden.attributes.targeting'|trans|capitalize }}</th>
+						<th scope="col">Properties</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for i in 1..14 %}
+						<tr>
+							<td>Light Cast Riveted Armor</td>
+							<td>{{ i / 6 % 3 + 1 }}</td>
+							<td>{{ i % 6 + 1 }}</td>
+							<td>{{ 300 + (i * 173 % 27) }}</td>
+							<td>{{ 75 + i * 5 + (i * 7 % 6) }}</td>
+							<td>0</td>
+							<td>0</td>
+							<td>0</td>
+							<td>
+								<img
+									src="http://www.metalmaidendepot.ovh/assets/images/armors/properties/riveted.png"
+									style="height: 1.5rem";
+									alt=""
+								/>
+								<img
+									src="http://www.metalmaidendepot.ovh/assets/images/armors/properties/cast.png"
+									style="height: 1.5rem";
+									alt=""
+								/>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<br />
+
+	<h4>{{ 'entities.shell'|transchoice(2)|capitalize }} :</h4>
+	<div class="d-lg-none">
+		<div class="row">
+			{% for i in 1..14 %}
+				<div class="col-12 col-sm-6 col-md-4">
+					<div class="metal-maiden card box-shadow mb-4 text-white border-0">
+						<div class="card-body">
+							<h5 class="card-title">
+								HCHE (L)<br />
+								<img
+									src="http://www.metalmaidendepot.ovh/assets/images/shells/properties/Burst.png"
+									style="height: 1.5rem";
+									alt=""
+								/>
+								<img
+									src="http://www.metalmaidendepot.ovh/assets/images/shells/properties/High-explosive.png"
+									style="height: 1.5rem";
+									alt=""
+								/>
+								<small><i class="fa fa-star text-warning"></i></small>
+							</h5>
+							<p class="card-text">
+								<img
+									src="http://www.metalmaidendepot.ovh/assets/images/tanks/attributes/firepower.png"
+									alt=""
+									style="height: 1.5rem;"
+									/
+								>
+								200
+								<img
+									src="http://www.metalmaidendepot.ovh/assets/images/tanks/attributes/penetration.png"
+									alt=""
+									style="height: 1.5rem;"
+									/
+								>
+								100<br />
+								<img
+									src="http://www.metalmaidendepot.ovh/assets/images/tanks/attributes/range.png"
+									alt=""
+									style="height: 1.5rem;"
+									/
+								>
+								13 920<br />
+							</p>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+	<div class="d-none d-lg-block">
+		<div class="table-responsive">
+			<table class="table table-bordered table-dark table-hover">
+				<thead>
+					<tr>
+						<th scope="col">Name</th>
+						<th scope="col">Category</th>
+						<th scope="col">Tier</th>
+						<th scope="col">Level</th>
+						<th scope="col">Range</th>
+						<th scope="col">{{ 'entity.metal_maiden.attributes.firepower'|trans|capitalize }}</th>
+						<th scope="col">{{ 'entity.metal_maiden.attributes.penetration'|trans|capitalize }}</th>
+						<th scope="col">{{ 'entity.metal_maiden.attributes.targeting'|trans|capitalize }}</th>
+						<th scope="col">{{ 'entity.metal_maiden.attributes.evasion'|trans|capitalize }}</th>
+						<th scope="col">{{ 'entity.metal_maiden.attributes.stealth'|trans|capitalize }}</th>
+						<th scope="col">Properties</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for i in 1..14 %}
+						<tr>
+							<td>HCHE (L)</td>
+							<td>High-Explosive</td>
+							<td>{{ i / 6 % 3 + 1 }}</td>
+							<td>{{ i % 6 + 1 }}</td>
+							<td>13 920</td>
+							<td>{{ 300 + (i * 173 % 27) }}</td>
+							<td>{{ 75 + i * 5 + (i * 7 % 6) }}</td>
+							<td>0</td>
+							<td>0</td>
+							<td>0</td>
+							<td>
+								<img
+									src="http://www.metalmaidendepot.ovh/assets/images/shells/properties/Burst.png"
+									style="height: 1.5rem";
+									alt=""
+								/>
+								<img
+									src="http://www.metalmaidendepot.ovh/assets/images/shells/properties/High-explosive.png"
+									style="height: 1.5rem";
+									alt=""
+								/>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<br />
+
+	<h4>{{ 'entities.dialogue'|transchoice(2)|capitalize }} :</h4>
+	<div class="table-responsive">
+		<table class="table table-bordered table-dark table-hover">
+			<thead>
+				<tr>
+					<th scope="col">Context</th>
+					<th scope="col">Line</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Introduction</td>
+					<td>Hello, I'm Lyudmila Levichenko, was responsible for base defense. The heavy consumption of my attire caused that the maintenance needs a lot of money. If you do not care about the cost, I can also go to the front with you. Let me destroy the enemy defenses.</td>
+				</tr>
+				<tr>
+					<td>Marriage</td>
+					<td>It shames me a bit to be able to receive the valuable reward, even if I haven't made outstanding contributions. I will do my best to execute your orders, even if I have to go through fire and water. But the maintenance cost of my attire ...... Hehehe</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<br />
+
+	<h4>{{ 'entity.metal_maiden.illustration'|transchoice(2)|capitalize }} :</h4>
+	<figure class="figure">
+		<img
+			src="http://www.metalmaidendepot.ovh/assets/images/tanks/full/2B1%20Oka%20SPA.png"
+			alt="{{ metal_maiden.attire }}"
+			class="figure-img img-fluid rounded"
+		/>
+		<figcaption class="figure-caption">{{ metal_maiden.attire }} full illustration</figcaption>
+	</figure>
 {% endblock %}

@@ -22,7 +22,7 @@
             {% if metal_maidens_filter["attire_category_abbreviation"] is defined and metal_maidens_filter["attire_category_abbreviation"] is not empty %}
                 {% if loop.first and metal_maidens_filter["nation_name"] is defined and metal_maidens_filter["nation_name"] is not empty %}
                     <a href="{{ path('metal_maiden_index_filtered_by_attire_category_abbreviation', {'attireCategoryAbbreviation': metal_maidens_filter["attire_category_abbreviation"]}) }}">
-                        <button type="button" type="button" class="btn btn-outline-danger btn-sm mr-3">reset</i></button>
+                        <button type="button" type="button" class="btn btn-outline-danger btn-sm mr-3">{{ 'action.reset'|trans }}</i></button>
                     </a>
                 {% endif %}
                 <a href="{{- path(
@@ -35,7 +35,7 @@
             {% else %}
                 {% if loop.first and metal_maidens_filter is defined %}
                     <a href="{{ path('metal_maiden_index') }}">
-                        <button type="button" type="button" class="btn btn-outline-danger btn-sm mr-3">reset</i></button>
+                        <button type="button" type="button" class="btn btn-outline-danger btn-sm mr-3">{{ 'action.reset'|trans }}</i></button>
                     </a>
                 {% endif %}
                 <a href="{{ path('metal_maiden_index_filtered_by_nation_name', {'nationName': nation.name}) }}">
@@ -54,7 +54,7 @@
             {% if metal_maidens_filter["nation_name"] is defined and metal_maidens_filter["nation_name"] is not empty %}
                 {% if loop.first and metal_maidens_filter["attire_category_abbreviation"] is defined and metal_maidens_filter["attire_category_abbreviation"] is not empty %}
                     <a href="{{ path('metal_maiden_index_filtered_by_nation_name', {'nationName': metal_maidens_filter["nation_name"]}) }}">
-                        <button type="button" type="button" class="btn btn-outline-danger btn-sm mr-3">reset</i></button>
+                        <button type="button" type="button" class="btn btn-outline-danger btn-sm mr-3">{{ 'action.reset'|trans }}</i></button>
                     </a>
                 {% endif %}
                 <a href="{{- path(
@@ -67,7 +67,7 @@
             {% else %}
                 {% if loop.first and metal_maidens_filter is defined %}
                     <a href="{{ path('metal_maiden_index') }}">
-                        <button type="button" type="button" class="btn btn-outline-danger btn-sm mr-3">reset</i></button>
+                        <button type="button" type="button" class="btn btn-outline-danger btn-sm mr-3">{{ 'action.reset'|trans }}</i></button>
                     </a>
                 {% endif %}
                 <a href="{{ path('metal_maiden_index_filtered_by_attire_category_abbreviation', {'attireCategoryAbbreviation': attire_category.abbreviation}) }}">

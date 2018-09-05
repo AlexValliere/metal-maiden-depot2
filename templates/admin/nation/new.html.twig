@@ -1,11 +1,13 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/dashboard/base.html.twig' %}
 
 {% block title %}New Nation{% endblock %}
 
 {% block body %}
-    <h1>Create new Nation</h1>
+	<h1>{{ 'admin.nation.new.main_title'|trans }}</h1>
 
-    {{ include('admin/nation/_form.html.twig') }}
+	{{ include('admin/nation/_form.html.twig') }}
 
-    <a href="{{ path('admin_nation_index') }}">back to list</a>
+	<div class="d-inline-block mt-2">
+		<a href="{{ path('admin_nation_index') }}"><button class="btn">{{ 'label.back_to_list'|trans }}</button></a>
+	</div>
 {% endblock %}

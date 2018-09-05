@@ -3,43 +3,47 @@
 {% block title %}Nation index{% endblock %}
 
 {% block body %}
-    <h1>Nation index</h1>
+	<h1>Nation index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>NameSlug</th>
-                <th>ImageName</th>
-                <th>ImageSize</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for nation in nations %}
-            <tr>
-                <td>{{ nation.id }}</td>
-                <td>{{ nation.name }}</td>
-                <td>{{ nation.nameSlug }}</td>
-                <td>{{ nation.imageName }}</td>
-                <td>{{ nation.imageSize }}</td>
-                <td>{{ nation.createdAt ? nation.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ nation.updatedAt ? nation.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('admin_nation_show', {'nameSlug': nation.nameSlug}) }}">show</a>
-                    <a href="{{ path('admin_nation_edit', {'nameSlug': nation.nameSlug}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="8">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	<div class="mb-2">
+		<a href="{{ path('admin_nation_new') }}">
+			<button type="button" class="btn btn-dark">{{ 'label.create_new'|transchoice(0) }}</button>
+		</a>
+	</div>
 
-    <a href="{{ path('admin_nation_new') }}">Create new</a>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>{{ 'label.id'|transchoice(0)|capitalize }}</th>
+				<th>{{ 'label.name'|transchoice(0)|capitalize }}</th>
+				<th>{{ 'label.name_slug'|transchoice(0)|capitalize }}</th>
+				<th>{{ 'label.image_name'|transchoice(0)|capitalize }}</th>
+				<th>{{ 'label.image_size'|transchoice(0)|capitalize }}</th>
+				<th>{{ 'label.created_at'|transchoice(0)|capitalize }}</th>
+				<th>{{ 'label.updated_at'|transchoice(0)|capitalize }}</th>
+				<th>{{ 'label.action'|transchoice(2)|capitalize }}</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% for nation in nations %}
+			<tr>
+				<td>{{ nation.id }}</td>
+				<td>{{ nation.name }}</td>
+				<td>{{ nation.nameSlug }}</td>
+				<td>{{ nation.imageName }}</td>
+				<td>{{ nation.imageSize }}</td>
+				<td>{{ nation.createdAt ? nation.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+				<td>{{ nation.updatedAt ? nation.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+				<td>
+					<a href="{{ path('admin_nation_show', {'nameSlug': nation.nameSlug}) }}">{{ 'label.show'|transchoice(2) }}</a>
+					<a href="{{ path('admin_nation_edit', {'nameSlug': nation.nameSlug}) }}">{{ 'label.edit'|transchoice(2) }}</a>
+				</td>
+			</tr>
+		{% else %}
+			<tr>
+				<td colspan="8">no records found</td>
+			</tr>
+		{% endfor %}
+		</tbody>
+	</table>
 {% endblock %}

@@ -13,32 +13,35 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class NationType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder
-            ->add('name')
-            ->add('imageFile', FileType::class, array(
-                'required'    => false
-            ))
-        ;
+	public function buildForm(FormBuilderInterface $builder, array $options)
+	{
+		$builder
+			->add('name', null, array(
+				'label_format' => 'label.name',
+			))
+			->add('imageFile', FileType::class, array(
+				'label' => 'label.name',
+				'required'    => false
+			))
+		;
 
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
-            $nation = $event->getData();
-            $form = $event->getForm();
+		$builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
+			$nation = $event->getData();
+			$form = $event->getForm();
 
-            // checks if the nation object is "new"
-            // If no data is passed to the form, the data is "null".
-            // This should be considered a new "nation"
-            if (!$nation || null === $nation->getId()) {
-                $form->remove('imageFile'); // Prevent error with filename not yet existing
-            }
-        });
-    }
+			// checks if the nation object is "new"
+			// If no data is passed to the form, the data is "null".
+			// This should be considered a new "nation"
+			if (!$nation || null === $nation->getId()) {
+				$form->remove('imageFile'); // Prevent error with filename not yet existing
+			}
+		});
+	}
 
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults([
-            'data_class' => Nation::class,
-        ]);
-    }
+	public function configureOptions(OptionsResolver $resolver)
+	{
+		$resolver->setDefaults([
+			'data_class' => Nation::class,
+		]);
+	}
 }

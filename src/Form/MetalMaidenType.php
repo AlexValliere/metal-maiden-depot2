@@ -19,7 +19,7 @@ class MetalMaidenType extends AbstractType
 	{
 		$builder
 			->add('name', null, array(
-				'label_format' => 'form.metal_maiden.%name%',
+				'label_format' => 'label.name',
 			))
 			->add('attire', null, array(
 				'label_format' => 'form.metal_maiden.%name%',

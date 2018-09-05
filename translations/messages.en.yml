@@ -14,6 +14,11 @@ admin:
       main_title: Metal Maidens index
     new:
       main_title: Create a Metal Maiden
+  nation:
+    index:
+      main_title: Nation index
+    new:
+      main_title: Create a nation
 
 entities:
   armor: 'armor|armors'
@@ -117,7 +122,12 @@ label:
   delete: Delete
   edit: Edit
   id: 'ID|IDs'
+  image_file: Image file
+  image_name: Image name
+  image_size: Image size
   level: 'Level|Levels'
+  name: Name
+  name_slug: Name slug
   none: None
   password: 'Password|Passwords'
   result: 'Result|Results'

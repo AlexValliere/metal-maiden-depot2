@@ -18,19 +18,19 @@
 							<td>{{ metal_maiden.id }}</td>
 						</tr>
 						<tr>
-							<th>Name</th>
+							<th>{{ 'label.name'|transchoice(0)|capitalize }}</th>
 							<td>{{ metal_maiden.name }}</td>
 						</tr>
 						<tr>
-							<th>Attire</th>
+							<th>{{ 'entity.metal_maiden.attire'|transchoice(0)|capitalize }}</th>
 							<td>{{ metal_maiden.attire }}</td>
 						</tr>
 						<tr>
-							<th>Attire category</th>
+							<th>{{ 'entities.attire_category'|transchoice(0)|capitalize }}</th>
 							<td>{% if metal_maiden.attireCategory %}{{ metal_maiden.attireCategory.name }} {% endif %}</td>
 						</tr>
 						<tr>
-							<th>Nation</th>
+							<th>{{ 'entities.nation'|transchoice(0)|capitalize }}</th>
 							<td>{% if metal_maiden.nation %}{{ metal_maiden.nation.name }} {% endif %}</td>
 						</tr>
 					</tbody>

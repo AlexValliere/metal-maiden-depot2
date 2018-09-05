@@ -14,6 +14,11 @@ admin:
       main_title: Index des Metal Maidens
     new:
       main_title: Créer une Metal Maiden
+  nation:
+    index:
+      main_title: Index des nations
+    new:
+      main_title: Créer une nation
 
 entities:
   armor: 'blindage|blindages'
@@ -118,7 +123,12 @@ label:
   delete: Supprimer
   edit: Éditer
   id: 'ID|IDs'
+  image_file: Fichier d'image
+  image_name: Nom de l'image
+  image_size: Taille de l'image
   level: 'Niveau|Niveaux'
+  name: Nom
+  name_slug: Nom formel
   none: 'Aucun|Aucuns'
   password: 'Mot de passe|Mots de passe'
   result: 'Résultat|Résultats'

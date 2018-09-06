@@ -122,7 +122,7 @@ class MetalMaidenController extends Controller
                 $em->flush();
             }
 
-            return $this->redirectToRoute('admin_metal_maiden_edit', ['id' => $metalMaiden->getId()]);
+            return $this->redirectToRoute('admin_metal_maiden_edit', ['attireSlug' => $metalMaiden->getAttireSlug()]);
         }
 
         return $this->render('admin/metal_maiden/edit.html.twig', [

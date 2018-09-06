@@ -83,6 +83,25 @@ class MetalMaidenRepository extends ServiceEntityRepository
             ->getOneOrNullResult();
     }
 
+   /**
+    * @return MetalMaiden[] Returns an array of MetalMaiden objects
+    */
+    
+    public function findByNameOrAttire($value, $limit)
+    {
+        return $this->createQueryBuilder('m')
+            ->where('m.attire like :val')
+            ->orWhere('m.name like :val')
+            ->setParameter('val', '%' . $value . '%')
+            ->addOrderBy('m.rarity', 'ASC')
+            ->addOrderBy('m.attireSlug', 'ASC')
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+    
+
 //    /**
 //     * @return MetalMaiden[] Returns an array of MetalMaiden objects
 //     */

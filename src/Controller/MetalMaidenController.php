@@ -17,126 +17,148 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class MetalMaidenController extends Controller
 {
-    /**
-     * @Route("/", name="metal_maiden_index", methods="GET")
-     */
-    public function index(MetalMaidenRepository $metalMaidenRepository): Response
-    {
-        $nations = $this->getDoctrine()
-            ->getRepository(Nation::class)
-            ->findAll();
+	/**
+	 * @Route("/", name="metal_maiden_index", methods="GET")
+	 */
+	public function index(MetalMaidenRepository $metalMaidenRepository): Response
+	{
+		$nations = $this->getDoctrine()
+			->getRepository(Nation::class)
+			->findAll();
 
-        $attireCategories = $this->getDoctrine()
-            ->getRepository(AttireCategory::class)
-            ->findAll();
+		$attireCategories = $this->getDoctrine()
+			->getRepository(AttireCategory::class)
+			->findAll();
 
-        return $this->render(
-            'metal_maiden/index.html.twig',
-            [
-                'attire_categories'     => $attireCategories,
-                'metal_maidens'         => $metalMaidenRepository->findAllWithJoin(),
-                'nations'               => $nations,
-            ]
-        );
-    }
+		return $this->render(
+			'metal_maiden/index.html.twig',
+			[
+				'attire_categories'     => $attireCategories,
+				'metal_maidens'         => $metalMaidenRepository->findAllWithJoin(),
+				'nations'               => $nations,
+			]
+		);
+	}
 
-    /**
-     * @Route("/attire-category/{attireCategoryAbbreviation}", name="metal_maiden_index_filtered_by_attire_category_abbreviation", methods="GET")
-     * @Route("/nation/{nationName}", name="metal_maiden_index_filtered_by_nation_name", methods="GET")
-     * @Route("/nation/{nationName}/attire-category/{attireCategoryAbbreviation}", name="metal_maiden_index_filtered_by_attire_category_abbreviation_and_nation_name", methods="GET")
-     */
-    public function indexFiltered(MetalMaidenRepository $metalMaidenRepository, $nationName = "", $attireCategoryAbbreviation = ""): Response
-    {
-        $nations = $this->getDoctrine()
-            ->getRepository(Nation::class)
-            ->findAll();
+	/**
+	 * @Route("/attire-category/{attireCategoryAbbreviation}", name="metal_maiden_index_filtered_by_attire_category_abbreviation", methods="GET")
+	 * @Route("/nation/{nationName}", name="metal_maiden_index_filtered_by_nation_name", methods="GET")
+	 * @Route("/nation/{nationName}/attire-category/{attireCategoryAbbreviation}", name="metal_maiden_index_filtered_by_attire_category_abbreviation_and_nation_name", methods="GET")
+	 */
+	public function indexFiltered(MetalMaidenRepository $metalMaidenRepository, $nationName = "", $attireCategoryAbbreviation = ""): Response
+	{
+		$nations = $this->getDoctrine()
+			->getRepository(Nation::class)
+			->findAll();
 
-        $attireCategories = $this->getDoctrine()
-            ->getRepository(AttireCategory::class)
-            ->findAll();
+		$attireCategories = $this->getDoctrine()
+			->getRepository(AttireCategory::class)
+			->findAll();
 
-        return $this->render(
-            'metal_maiden/index.html.twig',
-            [
-                'attire_categories'     => $attireCategories,
-                'metal_maidens'         => $metalMaidenRepository->findAllByAttireCategoryAbbreviationOrNationName(
-                                            [
-                                                'attire_category_abbreviation' => $attireCategoryAbbreviation,
-                                                'nation_name' => $nationName,
-                                            ]
-                                        ),
-                'metal_maidens_filter'  =>
-                    [
-                        'attire_category_abbreviation' => $attireCategoryAbbreviation,
-                        'nation_name'                  => $nationName,
-                    ],
-                'nations' => $nations,
-            ]
-        );
-    }
+		return $this->render(
+			'metal_maiden/index.html.twig',
+			[
+				'attire_categories'     => $attireCategories,
+				'metal_maidens'         => $metalMaidenRepository->findAllByAttireCategoryAbbreviationOrNationName(
+											[
+												'attire_category_abbreviation' => $attireCategoryAbbreviation,
+												'nation_name' => $nationName,
+											]
+										),
+				'metal_maidens_filter'  =>
+					[
+						'attire_category_abbreviation' => $attireCategoryAbbreviation,
+						'nation_name'                  => $nationName,
+					],
+				'nations' => $nations,
+			]
+		);
+	}
 
-    /**
-     * @Route("/new", name="metal_maiden_new", methods="GET|POST")
-     */
-    public function new(Request $request): Response
-    {
-        $metalMaiden = new MetalMaiden();
-        $form = $this->createForm(MetalMaidenType::class, $metalMaiden);
-        $form->handleRequest($request);
+	/**
+	 * @Route("/search", methods="GET", name="metal_maiden_search")
+	 */
+	public function search(Request $request, MetalMaidenRepository $metalMaidens): Response
+	{
+		$searchQuery = $request->query->get('search_query');
+		$foundMetalMaidens = $metalMaidens->findByNameOrAttire($searchQuery, 1000);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($metalMaiden);
-            $em->flush();
+/*		$results = [];
+		foreach ($foundMetalMaidens as $metalMaiden) {
+			$results[] = [
+				'name' => htmlspecialchars($metalMaiden->getName()),
+				'attire' => htmlspecialchars($metalMaiden->getAttire()),
+				'url' => $this->generateUrl('metal_maiden', ['attireSlug' => $metalMaiden->getAttireSlug()]),
+			];
+		}*/
 
-            return $this->redirectToRoute('metal_maiden_index');
-        }
+		return $this->render('metal_maiden/search.html.twig', [
+			'found_metal_maidens' => $foundMetalMaidens,
+		]);
+	}
 
-        return $this->render('metal_maiden/new.html.twig', [
-            'metal_maiden' => $metalMaiden,
-            'form' => $form->createView(),
-        ]);
-    }
+	/**
+	 * @Route("/new", name="metal_maiden_new", methods="GET|POST")
+	 */
+	public function new(Request $request): Response
+	{
+		$metalMaiden = new MetalMaiden();
+		$form = $this->createForm(MetalMaidenType::class, $metalMaiden);
+		$form->handleRequest($request);
 
-    /**
-     * @Route("/{attireSlug}", name="metal_maiden_show", methods="GET")
-     */
-    public function show(MetalMaiden $metalMaiden): Response
-    {
-        return $this->render('metal_maiden/show.html.twig', ['metal_maiden' => $metalMaiden]);
-    }
+		if ($form->isSubmitted() && $form->isValid()) {
+			$em = $this->getDoctrine()->getManager();
+			$em->persist($metalMaiden);
+			$em->flush();
 
-    /**
-     * @Route("/{id}/edit", name="metal_maiden_edit", methods="GET|POST")
-     */
-    public function edit(Request $request, MetalMaiden $metalMaiden): Response
-    {
-        $form = $this->createForm(MetalMaidenType::class, $metalMaiden);
-        $form->handleRequest($request);
+			return $this->redirectToRoute('metal_maiden_index');
+		}
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+		return $this->render('metal_maiden/new.html.twig', [
+			'metal_maiden' => $metalMaiden,
+			'form' => $form->createView(),
+		]);
+	}
 
-            return $this->redirectToRoute('metal_maiden_edit', ['id' => $metalMaiden->getId()]);
-        }
+	/**
+	 * @Route("/{attireSlug}", name="metal_maiden_show", methods="GET")
+	 */
+	public function show(MetalMaiden $metalMaiden): Response
+	{
+		return $this->render('metal_maiden/show.html.twig', ['metal_maiden' => $metalMaiden]);
+	}
 
-        return $this->render('metal_maiden/edit.html.twig', [
-            'metal_maiden' => $metalMaiden,
-            'form' => $form->createView(),
-        ]);
-    }
+	/**
+	 * @Route("/{id}/edit", name="metal_maiden_edit", methods="GET|POST")
+	 */
+	public function edit(Request $request, MetalMaiden $metalMaiden): Response
+	{
+		$form = $this->createForm(MetalMaidenType::class, $metalMaiden);
+		$form->handleRequest($request);
 
-    /**
-     * @Route("/{id}", name="metal_maiden_delete", methods="DELETE")
-     */
-    public function delete(Request $request, MetalMaiden $metalMaiden): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$metalMaiden->getId(), $request->request->get('_token'))) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($metalMaiden);
-            $em->flush();
-        }
+		if ($form->isSubmitted() && $form->isValid()) {
+			$this->getDoctrine()->getManager()->flush();
 
-        return $this->redirectToRoute('metal_maiden_index');
-    }
+			return $this->redirectToRoute('metal_maiden_edit', ['id' => $metalMaiden->getId()]);
+		}
+
+		return $this->render('metal_maiden/edit.html.twig', [
+			'metal_maiden' => $metalMaiden,
+			'form' => $form->createView(),
+		]);
+	}
+
+	/**
+	 * @Route("/{id}", name="metal_maiden_delete", methods="DELETE")
+	 */
+	public function delete(Request $request, MetalMaiden $metalMaiden): Response
+	{
+		if ($this->isCsrfTokenValid('delete'.$metalMaiden->getId(), $request->request->get('_token'))) {
+			$em = $this->getDoctrine()->getManager();
+			$em->remove($metalMaiden);
+			$em->flush();
+		}
+
+		return $this->redirectToRoute('metal_maiden_index');
+	}
 }

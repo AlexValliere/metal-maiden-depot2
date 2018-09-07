@@ -51,10 +51,17 @@ entity:
     self-propelled-gun: Canon automoteur
 
   metal_maiden:
+    affiliation: affiliation
+    age: âge
     attire: ExoSuit
     attribute: 'attribut|attributs'
+    birthdate: date de naissance
+    birthday: anniversaire
+    blood_type: groupe sanguin
+    height: taille
     illustration: 'illustration|illustrations'
     name: nom
+    occupation: profession
     profile: profil
     talent: 'talent|talents'
 

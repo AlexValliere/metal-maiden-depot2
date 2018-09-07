@@ -50,10 +50,17 @@ entity:
     self-propelled-gun: Self-Propelled Gun
 
   metal_maiden:
+    affiliation: affiliation
+    age: age
     attire: attire
     attribute: 'attribute|attributes'
+    birthdate: birthdate
+    birthday: birthday
+    blood_type: blood type
+    height: height
     illustration: 'illustration|illustrations'
     name: name
+    occupation: occupation
     profile: profile
     talent: 'talent|talents'
 

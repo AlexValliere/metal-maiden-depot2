@@ -4,7 +4,16 @@
 
 {% block body %}
 
-	<h1 class="font-weight-normal mb-4">{{ metal_maiden.attire }} <small class="text-muted">{{ metal_maiden.name }}</small></h1>
+	<h1 class="font-weight-normal mb-4">
+		{{ metal_maiden.attire }} <small class="text-muted">{{ metal_maiden.name }}</small>
+		{% if is_granted(expression(
+		    '"ROLE_ADMIN" in roles or (not is_anonymous() and user.isSuperAdmin())'
+		)) %}
+			<a href="{{ path('admin_metal_maiden_edit', {'attireSlug': metal_maiden.attireSlug}) }}">
+				<button type="button" class="btn btn-primary">{{ 'label.edit'|trans|capitalize }}</button>
+			</a>
+		{% endif %}
+	</h1>
 
 	<hr />
 
@@ -31,18 +40,14 @@
 	<h4>{{ 'entity.metal_maiden.profile'|trans|capitalize }} :</h4>
 	<!-- <p>{{ 'label.none'|transchoice(0) }}</p> -->
 	<p>
-Age: 22<br />
-Birthday: 5th June<br />
-Affiliation: S.V.S.<br />
-Blood Type: O<br />
-Height: 169cm<br />
-Occupation: Royal Princess-in-exile / Rossiyan Reconnaissance Squad<br />
-<br />
-Anastasia Alexandrovna was never seen as an individual who has a royal family background. Her family had been residing in Kolyma ever since they escaped from the Bolsheviks decades ago with the help of sacrificial doppelgangers. When the beast tank outbreak happened in nearby Yakutsk, she was first to volunteer to help, out of her family's dismay. Frustrated by her own parent's cowardice, Anastasia disowned herself from the royal family, and fled to Yakutsk, joining in the defense in the heat of battle.<br />
-<br />
-It was only then instructor Sophia took notice of Anastasia's resilience, and had her enroll into the Rossiyan metal maiden program. While Communist politicians and leaders alike are furious that the royal family had indeed survived the wrath of the Bolsheviks, Anastasia's growing interest and loyalty with the regime had allowed her to join without any resistance. While stubborn to the point where other metal maidens have to humble her, Anastasia's undying loyalty for the nation comes across as a motivational figure where she dares to lead despite lacking in tactical expertise.<br />
-<br />
-Despite her initial background, she enjoys the company of the common folk, especially metal maidens who come from such background. As a result, her popularity as a people's royal figure began to take shape, even though Anastasia herself is unaware of this. However, her relations with metal maidens from Bavaria and Fusou are a little uneasy, considering the initial plans of invading Rossiya before the beast tank outbreak. But one stands out from the rest. Tessa Nieminen, who is stationed on the Mannerheim Defense Line. Somehow she's able to sneak in and play pranks on Anastasia without being detected. Considering that Anastasia is stationed in Leningrad, how does Tessa do this remains a mystery...<br />
+		{{ 'entity.metal_maiden.age'|trans|capitalize }}: {{ metal_maiden.birthdate }}<br />
+		{{ 'entity.metal_maiden.birthday'|trans|capitalize }}: {{ metal_maiden.birthdate }}<br />
+		{{ 'entity.metal_maiden.height'|trans|capitalize }}: {{ metal_maiden.height }}<br />
+		{{ 'entity.metal_maiden.blood_type'|trans|capitalize }}: {{ metal_maiden.bloodType }}<br />
+		{{ 'entity.metal_maiden.affiliation'|trans|capitalize }}: {{ metal_maiden.affiliation }}<br />
+		{{ 'entity.metal_maiden.occupation'|trans|capitalize }}: {{ metal_maiden.occupation }}<br />
+		<br />
+		{{ metal_maiden.profile }}
 	</p>
 
 	<br />

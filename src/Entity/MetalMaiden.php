@@ -78,6 +78,36 @@ class MetalMaiden
     private $portraitImageSize;
 
     /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $birthdate;
+
+    /**
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    private $height;
+
+    /**
+     * @ORM\Column(type="string", length=3, nullable=true)
+     */
+    private $bloodType;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $affiliation;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $occupation;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $profile;
+
+    /**
      * @ORM\Column(type="datetime")
      *
      * @var \DateTime
@@ -211,6 +241,73 @@ class MetalMaiden
         return (null !== $this->portraitImageName) ? true : false;
     }
 
+    public function setBirthdate(?\DateTimeInterface $birthdate): self
+    {
+        $this->birthdate = $birthdate;
+
+        return $this;
+    }
+
+    public function getHeight(): ?int
+    {
+        return $this->height;
+    }
+
+    public function setHeight(?int $height): self
+    {
+        $this->height = $height;
+
+        return $this;
+    }
+
+    public function getBloodType(): ?string
+    {
+        return $this->bloodType;
+    }
+
+    public function setBloodType(?string $bloodType): self
+    {
+        $this->bloodType = $bloodType;
+
+        return $this;
+    }
+
+    public function getAffiliation(): ?string
+    {
+        return $this->affiliation;
+    }
+
+    public function setAffiliation(?string $affiliation): self
+    {
+        $this->affiliation = $affiliation;
+
+        return $this;
+    }
+
+    public function getOccupation(): ?string
+    {
+        return $this->occupation;
+    }
+
+    public function setOccupation(?string $occupation): self
+    {
+        $this->occupation = $occupation;
+
+        return $this;
+    }
+
+    public function getProfile(): ?string
+    {
+        return $this->profile;
+    }
+
+    public function setProfile(?string $profile): self
+    {
+        $this->profile = $profile;
+
+        return $this;
+    }
+
     public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
@@ -237,5 +334,10 @@ class MetalMaiden
     public function updateDate(): void
     {
         $this->setUpdatedAt(new \Datetime());
+    }
+
+    public function getBirthdate(): ?\DateTimeInterface
+    {
+        return $this->birthdate;
     }
 }

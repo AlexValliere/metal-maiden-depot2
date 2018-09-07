@@ -39,6 +39,10 @@
 		</div>
 	</div>
 
+	<div class="d-inline-block mb-2">
+		<a href="{{ path('metal_maiden_show', {'attireSlug': metal_maiden.attireSlug}) }}"><button class="btn d-inline-block">{{ 'label.public_view'|transchoice(0)|capitalize }}</button></a>
+	</div>
+
 	<div class="d-inline-block mt-2">
 		<a href="{{ path('admin_metal_maiden_index') }}"><button class="btn d-inline-block">{{ 'label.back_to_list'|transchoice(0)|capitalize }}</button></a>
 	</div>

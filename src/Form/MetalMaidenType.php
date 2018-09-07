@@ -11,6 +11,12 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+/*use Symfony\Component\Form\Extension\Core\Type\DateType;*/
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class MetalMaidenType extends AbstractType
@@ -35,11 +41,48 @@ class MetalMaidenType extends AbstractType
 			))
 			->add('nation', EntityType::class, array(
 				'class' => Nation::class,
-				'choice_label' => 'name',
+				'choice_label'	=> 'name',
+				'label_format'	=> 'form.metal_maiden.%name%',
+				'multiple'		=> false,
+				'empty_data'	=> null,
+				'required'		=> false,
+			))
+			->add('birthdate', BirthdayType::class, array(
+				'label_format'	=> 'form.metal_maiden.%name%',
+				'years'			=> range(date('1900'), date('Y')),
+			))
+			->add('height', IntegerType::class, array(
+				'label_format'	=> 'form.metal_maiden.%name%',
+				'attr'			=> array(
+					'min'			=> '20',
+					'max'			=> '300',
+				),
+			))
+			->add('bloodType', ChoiceType::class, array(
+				'choices'  => array(
+					' '		=> null,
+					'O'		=> 'O',
+					'O+'	=> 'O+',
+					'O-'	=> 'O-',
+					'A'		=> 'A',
+					'A+'	=> 'A+',
+					'A-'	=> 'A-',
+					'B'		=> 'B',
+					'B+'	=> 'B+',
+					'B-'	=> 'B-',
+					'AB'	=> 'AB',
+					'AB+'	=> 'AB+',
+					'AB-'	=> 'AB-',
+			    ),
+			))
+			->add('affiliation', TextType::class, array(
 				'label_format' => 'form.metal_maiden.%name%',
-				'multiple'     => false,
-				'empty_data'  => null,
-				'required' => false,
+			))
+			->add('occupation', TextType::class, array(
+				'label_format' => 'form.metal_maiden.%name%',
+			))
+			->add('profile', TextareaType::class, array(
+				'label_format' => 'form.metal_maiden.%name%',
 			))
 		;
 

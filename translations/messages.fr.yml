@@ -103,10 +103,21 @@ form:
     abbreviation: Abbréviation
     name: Nom
   metal_maiden:
+    affiliation: Affiliation
+    age: Âge
     attire: ExoSuit
     attire_category: Catégorie d'ExoSuit
+    birthdate: Date de naissance
+    birthday: Anniversaire
+    blood_type: Groupe sanguin
+    day: Jour
+    height: Taille (cm)
+    month: Mois
     name: Nom
     nation: Nation
+    occupation: Profession
+    profil: Profil
+    year: Année
 
   nation:
     bavaria: Bavaria
@@ -125,6 +136,7 @@ form:
 label:
   action: Actions
   back_to_list: Retour à la liste
+  back_to_full_view: Retour à la vue complète
   create_new: Créer
   created_at: Créé le
   delete: Supprimer
@@ -138,6 +150,7 @@ label:
   name_slug: Nom formel
   none: 'Aucun|Aucuns'
   password: 'Mot de passe|Mots de passe'
+  public_view: Vue publique
   result: 'Résultat|Résultats'
   save: 'Enregistrer'
   show: Voir

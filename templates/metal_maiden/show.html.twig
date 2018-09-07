@@ -39,15 +39,15 @@
 
 	<h4>{{ 'entity.metal_maiden.profile'|trans|capitalize }} :</h4>
 	<!-- <p>{{ 'label.none'|transchoice(0) }}</p> -->
+	{{ 'entity.metal_maiden.age'|trans|capitalize }}: {% if metal_maiden.age is not null %}{{ metal_maiden.age|date("%Y") }}{% endif %}<br />
+	{{ 'entity.metal_maiden.birthday'|trans|capitalize }}: {% if metal_maiden.birthdate is not null %}{{ metal_maiden.birthdate|localizeddate('medium', 'none', app.request.locale) }}{% endif %}<br />
+	{{ 'entity.metal_maiden.height'|trans|capitalize }}: {{ metal_maiden.height }}<br />
+	{{ 'entity.metal_maiden.blood_type'|trans|capitalize }}: {{ metal_maiden.bloodType }}<br />
+	{{ 'entity.metal_maiden.affiliation'|trans|capitalize }}: {{ metal_maiden.affiliation }}<br />
+	{{ 'entity.metal_maiden.occupation'|trans|capitalize }}: {{ metal_maiden.occupation }}<br />
+	<br />
 	<p>
-		{{ 'entity.metal_maiden.age'|trans|capitalize }}: {{ metal_maiden.birthdate }}<br />
-		{{ 'entity.metal_maiden.birthday'|trans|capitalize }}: {{ metal_maiden.birthdate }}<br />
-		{{ 'entity.metal_maiden.height'|trans|capitalize }}: {{ metal_maiden.height }}<br />
-		{{ 'entity.metal_maiden.blood_type'|trans|capitalize }}: {{ metal_maiden.bloodType }}<br />
-		{{ 'entity.metal_maiden.affiliation'|trans|capitalize }}: {{ metal_maiden.affiliation }}<br />
-		{{ 'entity.metal_maiden.occupation'|trans|capitalize }}: {{ metal_maiden.occupation }}<br />
-		<br />
-		{{ metal_maiden.profile }}
+		{{ metal_maiden.profile|nl2br }}
 	</p>
 
 	<br />

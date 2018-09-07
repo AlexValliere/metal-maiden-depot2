@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
@@ -84,6 +85,12 @@ class MetalMaiden
 
     /**
      * @ORM\Column(type="smallint", nullable=true)
+     * @Assert\Range(
+     *      min = 20,
+     *      max = 300,
+     *      minMessage = "Must be at least {{ limit }}cm",
+     *      maxMessage = "Cannot be taller than {{ limit }}cm"
+     * )
      */
     private $height;
 
@@ -241,11 +248,27 @@ class MetalMaiden
         return (null !== $this->portraitImageName) ? true : false;
     }
 
+    public function getBirthdate(): ?\DateTimeInterface
+    {
+        return $this->birthdate;
+    }
+
     public function setBirthdate(?\DateTimeInterface $birthdate): self
     {
         $this->birthdate = $birthdate;
 
         return $this;
+    }
+
+    public function getAge(): ?\DateInterval
+    {
+        $now = new \DateTime('now');
+        $age = null;
+
+        if ($this->birthdate)
+            $age = $now->diff($this->birthdate);
+        
+        return $age;
     }
 
     public function getHeight(): ?int
@@ -334,10 +357,5 @@ class MetalMaiden
     public function updateDate(): void
     {
         $this->setUpdatedAt(new \Datetime());
-    }
-
-    public function getBirthdate(): ?\DateTimeInterface
-    {
-        return $this->birthdate;
     }
 }

@@ -116,14 +116,26 @@ form:
     abbreviation: Abbreviation
     name: Name
   metal_maiden:
+    affiliation: Affiliation
+    age: Age
     attire: Attire
     attire_category: Attire category
+    birthdate: Birthdate
+    birthday: Birthday
+    blood_type: Blood type
+    day: Day
+    height: Height (cm)
+    month: Month
     name: Name
     nation: Nation
+    occupation: Occupation
+    profile: Profile
+    year: Year
 
 label:
   action: Actions
   back_to_list: Back to list
+  back_to_full_view: Back to full view
   create_new: Create new
   created_at: Created at
   delete: Delete
@@ -137,6 +149,7 @@ label:
   name_slug: Name slug
   none: None
   password: 'Password|Passwords'
+  public_view: Public view
   result: 'Result|Results'
   save: Save
   show: Show
